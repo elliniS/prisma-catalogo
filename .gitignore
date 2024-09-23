@@ -361,3 +361,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+#Connection_string
+.env
+
+#Migrations
+Migrations/
+/Packages.txt
