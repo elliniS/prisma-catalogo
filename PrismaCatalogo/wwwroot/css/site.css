@@ -57,3 +57,23 @@ body {
     left: -1px;
     transform: translateX(-100%);
 }
+
+.btn-padrao {
+    background-color: var(--cor-primaria) !important;
+    color: var(--cor-texto);
+    margin: 5px;
+}
+
+    .btn-padrao:hover {
+        color: darkseagreen;
+    }
+
+    .btn-padrao a {
+        color: var(--cor-texto);
+        text-decoration: none;
+    }
+
+        .btn-padrao a:hover {
+            color: darkseagreen;
+            text-decoration: none;
+        }

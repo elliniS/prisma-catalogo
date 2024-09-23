@@ -1,7 +1,20 @@
+using PrismaCatalogo.Context;
+using PrismaCatalogo.Repositories.Interfaces;
+using PrismaCatalogo.Repositories;
+using FluentValidation.AspNetCore;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services.AddMvc(setup => {
+    // Implementação de código MVC...
+}).AddFluentValidation(fv => fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+
+
+builder.Services.AddTransient<ITamanhoRepository, TamanhoRepository>();
 
 var app = builder.Build();
 
@@ -19,6 +32,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Funcionario}/{action=Index}/{id?}"
+);
 
 app.MapControllerRoute(
     name: "default",

@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using dotenv.net;
+using PrismaCatalogo.Models;
 
-namespace prisma.Context
+namespace PrismaCatalogo.Context
 {
     public class ApplicationDbContext : DbContext
     {
@@ -13,5 +14,16 @@ namespace prisma.Context
                 optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("DATABASE_URL"));
             }
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Tamanho>(e => {
+                e.HasKey(t => t.Id);
+                e.HasIndex(t => t.Nome).IsUnique(true);
+            });
+                
+        }
+
+        public DbSet<Tamanho> Tamanhos { get; set; }
     }
 }

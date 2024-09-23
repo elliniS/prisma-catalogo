@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PrismaCatalogo.Models.Tamanho>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div>
+    <div>
+        <h1 class="text-center">Tamanhos</h1>
+    </div>
+
+    <p class="text-end"> 
+        <button type="button" class="btn btn-padrao"><a class="cor" asp-action="Create">Criar Tammanho</a></button>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td class="text-end">
+                        <a class="cor-primaria" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-fill"></i></a> |
+                        <a class="cor-primaria" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye-fill"></i></a> |
+                        <a class="cor-primaria" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>
