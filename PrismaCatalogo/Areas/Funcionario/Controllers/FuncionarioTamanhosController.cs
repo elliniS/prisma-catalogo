@@ -68,6 +68,7 @@ namespace Prisma.Areas.Funcionario.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             ModelState.Clear();
             resul.AddToModelState(ModelState);
 
@@ -97,12 +98,15 @@ namespace Prisma.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Tamanho tamanho)
         {
+            TamanhoValidator validations = new TamanhoValidator(_context.Tamanhos);
+            var resul = validations.Validate(tamanho);
+
             if (id != tamanho.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (resul.IsValid)
             {
                 try
                 {
@@ -122,6 +126,10 @@ namespace Prisma.Areas.Funcionario.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ModelState.Clear();
+            resul.AddToModelState(ModelState);
+
             return View(tamanho);
         }
 

@@ -12,7 +12,7 @@ namespace PrismaCatalogo.Validations
         public TamanhoValidator(IEnumerable<Tamanho> tamanhos)
         {
             RuleFor(x => x.Nome)
-                .NotNull()
+                .NotEmpty()
                 .WithMessage("Informe algum nome para o tamanho!")
                 .IsUnique(tamanhos)
                 .WithMessage("Tamanho já existe!");

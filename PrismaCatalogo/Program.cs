@@ -15,6 +15,7 @@ builder.Services.AddMvc(setup => {
 
 
 builder.Services.AddTransient<ITamanhoRepository, TamanhoRepository>();
+builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 
 var app = builder.Build();
 

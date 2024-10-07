@@ -4,15 +4,15 @@ using PrismaCatalogo.Repositories.Interfaces;
 
 namespace PrismaCatalogo.Repositories
 {
-    public class TamanhoRepository : ITamanhoRepository
+    public class CategoriaRepository : ICategoriaRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public TamanhoRepository(ApplicationDbContext context)
+        public CategoriaRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<Tamanho> Tamanhos => _context.Tamanhos;
+        public IEnumerable<Categoria> Categorias => _context.Categorias;
     }
 }

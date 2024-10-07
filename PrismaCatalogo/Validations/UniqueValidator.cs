@@ -20,8 +20,9 @@ namespace PrismaCatalogo.Validations
         }
 
         public override bool IsValid(ValidationContext<T> context, TProperty value)
+        
         {
-            if (value is not null)
+            if (value is not null && _values != null)
             {
                 var property = typeof(T).GetTypeInfo().GetDeclaredProperty(context.PropertyName);
                 return !_values.Any(p => property.GetValue(p).ToString().Equals(value.ToString()));

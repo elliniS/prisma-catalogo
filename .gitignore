@@ -367,3 +367,5 @@ FodyWeavers.xsd
 
 #Migrations
 Migrations/
+/PrismaCatalogo/Areas/Funcionario/Controllers/FuncionarioCategoriasController.cs
+/PrismaCatalogo/Areas/Funcionario/Views/FuncionarioCategorias
