@@ -173,9 +173,9 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
                 return NotFound();
             }
 
-            CorValidator validations = new CorValidator(_context.Cores);
+            List<Cor> cores = _context.Cores.Where(c => c.Id != cor.Id).ToList();
+            CorValidator validations = new CorValidator(cores);
             var result = validations.Validate(cor);
-
 
             if (result.IsValid)
             {

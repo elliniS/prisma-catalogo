@@ -15,7 +15,7 @@ namespace PrismaCatalogo.Validations
                 .NotEmpty()
                 .WithMessage("Informe algum nome para a cor!")
                 .IsUnique(cor)
-                .WithMessage("Cor já existe!");
+                .WithMessage("Outra cor já esta usando este nome!!");
         }
     }
 }

@@ -98,7 +98,8 @@ namespace Prisma.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Tamanho tamanho)
         {
-            TamanhoValidator validations = new TamanhoValidator(_context.Tamanhos);
+            var tamanhos = _context.Tamanhos.Where(t => t.Id != tamanho.Id).ToList();
+            TamanhoValidator validations = new TamanhoValidator(tamanhos);
             var resul = validations.Validate(tamanho);
 
             if (id != tamanho.Id)

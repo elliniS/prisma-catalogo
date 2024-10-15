@@ -11,7 +11,7 @@ namespace PrismaCatalogo.Validations
                 .NotEmpty()
                 .WithMessage("Informe algum nome para a categoria!")
                 .IsUnique(categorias)
-                .WithMessage("Categoria já existe!");
+                .WithMessage("Outra categoria já esta usando este nome!");
         }
 
         public CategoriaValidator()

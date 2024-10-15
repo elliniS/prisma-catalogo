@@ -15,7 +15,7 @@ namespace PrismaCatalogo.Validations
                 .NotEmpty()
                 .WithMessage("Informe algum nome para o tamanho!")
                 .IsUnique(tamanhos)
-                .WithMessage("Tamanho já existe!");
+                .WithMessage("Outro tamanho já esta usando este nome!!");
         }
     }
 }
