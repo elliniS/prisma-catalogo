@@ -31,10 +31,17 @@ namespace PrismaCatalogo.Context
                 .HasMany(e => e.CategoriasFilhas)
                 .WithOne(e => e.CategoriaPai)
                 .HasForeignKey(e => e.IdPai)
-                .HasPrincipalKey(e => e.Id); 
+                .HasPrincipalKey(e => e.Id);
+
+            modelBuilder.Entity<Cor>(c =>
+            {
+                c.HasKey(t => t.Id);
+                c.HasIndex(t => t.Nome).IsUnique(true);
+            });
         }
 
         public DbSet<Tamanho> Tamanhos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Cor> Cores { get; set; }
     }
 }
