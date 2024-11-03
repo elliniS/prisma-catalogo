@@ -63,11 +63,15 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,IdPai,Nome")] Categoria categoria)
         {
-            List<Categoria> categorias = await _context.Categorias.Where(c => c.IdPai == null).ToListAsync();
+            List<Categoria> categorias = new List<Categoria>();
 
-            if(categoria.IdPai != null)
+            if (categoria.IdPai == null)
             {
-                categorias = categorias.Where(c => c.Id == categoria.IdPai).FirstOrDefault().CategoriasFilhas.ToList();
+                categorias = await _context.Categorias.Where(c => c.IdPai == null).ToListAsync();
+            }
+            else
+            {
+                categorias = await _context.Categorias.Where(c => c.IdPai ==  categoria.IdPai).ToListAsync();   
             }
 
             CategoriaValidator validationRules = new CategoriaValidator(categorias);
@@ -117,9 +121,12 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
                 return NotFound();
             }
 
-            List<Categoria> categorias = await _context.Categorias.Where(c => c.IdPai == null && c.Id != categoria.Id).ToListAsync();
+            List<Categoria> categorias = new List<Categoria>();
 
-            if (categoria.IdPai != null)
+            if (categoria.IdPai == null) {
+                categorias = await _context.Categorias.Where(c => c.IdPai == null && c.Id != categoria.Id).ToListAsync();
+            }
+            else
             {
                 categorias = categorias.Where(c => c.Id == categoria.IdPai && c.Id != categoria.Id).FirstOrDefault().CategoriasFilhas.ToList();
             }
