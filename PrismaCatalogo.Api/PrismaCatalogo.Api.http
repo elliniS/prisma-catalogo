@@ -1,0 +1,6 @@
+@PrismaCatalogo.Api_HostAddress = http://localhost:5045
+
+GET {{PrismaCatalogo.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

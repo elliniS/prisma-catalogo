@@ -1,49 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentValidation.AspNetCore;
+﻿using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using PrismaCatalogo.Context;
-using PrismaCatalogo.Models;
+using PrismaCatalogo.Web.Models;
 using PrismaCatalogo.Validations;
+using PrismaCatalogo.Web.Services.Interfaces;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Prisma.Areas.Funcionario.Controllers
+namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
 {
     [Area("Funcionario")]
     public class FuncionarioTamanhosController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private ITamanhoService _tamanhoService;
 
-        public FuncionarioTamanhosController(ApplicationDbContext context)
+        public FuncionarioTamanhosController(ITamanhoService tamanho)
         {
-            _context = context;
+            _tamanhoService = tamanho;
         }
 
         // GET: Funcionario/FuncionarioTamanhos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tamanhos.ToListAsync());
+            var tamanhos = await _tamanhoService.GetAll();
+
+            if(tamanhos == null)
+            {
+                tamanhos = new List<TamanhoViewModel>();
+                ViewData["mensagemError"] = "Erro ao buscar tamanho!";
+            }
+
+            return View(tamanhos);
         }
 
         // GET: Funcionario/FuncionarioTamanhos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                var tamanho = await _tamanhoService.FindById(Convert.ToInt32(id));
 
-            var tamanho = await _context.Tamanhos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (tamanho == null)
+                if (tamanho == null)
+                {
+                    throw new Exception();
+                }
+
+                return View(tamanho);
+            }
+            catch
             {
-                return NotFound();
+                ViewData["mensagemError"] = "Erro ao buscar tamanho!";
+                return RedirectToAction(nameof(Index));
             }
-
-            return View(tamanho);
         }
 
         // GET: Funcionario/FuncionarioTamanhos/Create
@@ -57,16 +63,22 @@ namespace Prisma.Areas.Funcionario.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome")] Tamanho tamanho)
+        public async Task<IActionResult> Create([Bind("Id,Nome")] TamanhoViewModel tamanho)
         {
-            TamanhoValidator validations = new TamanhoValidator(_context.Tamanhos);
+            TamanhoValidator validations = new TamanhoValidator(await _tamanhoService.GetAll());
             var resul = validations.Validate(tamanho);
 
             if (resul.IsValid)
             {
-                _context.Add(tamanho);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    var result = await _tamanhoService.Create(tamanho);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    ViewData["mensagemError"] = "Erro ao cadastrar!";
+                }
             }
 
             ModelState.Clear();
@@ -78,17 +90,20 @@ namespace Prisma.Areas.Funcionario.Controllers
         // GET: Funcionario/FuncionarioTamanhos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            try {
+                var tamanho = await _tamanhoService.FindById(Convert.ToInt32(id));
 
-            var tamanho = await _context.Tamanhos.FindAsync(id);
-            if (tamanho == null)
-            {
-                return NotFound();
+                if (tamanho == null)
+                {
+                    throw new Exception();                    
+                }
+                return View(tamanho);
             }
-            return View(tamanho);
+             catch
+            {
+                ViewData["mensagemError"] = "Erro ao acessar tela de edição!";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // POST: Funcionario/FuncionarioTamanhos/Edit/5
@@ -96,60 +111,50 @@ namespace Prisma.Areas.Funcionario.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] Tamanho tamanho)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] TamanhoViewModel tamanhoViewModel)
         {
-            var tamanhos = _context.Tamanhos.Where(t => t.Id != tamanho.Id).ToList();
+            var tamanhos = (await _tamanhoService.GetAll()).Where(t => t.Id != id);
             TamanhoValidator validations = new TamanhoValidator(tamanhos);
-            var resul = validations.Validate(tamanho);
-
-            if (id != tamanho.Id)
-            {
-                return NotFound();
-            }
+            var resul = validations.Validate(tamanhoViewModel);
 
             if (resul.IsValid)
             {
                 try
                 {
-                    _context.Update(tamanho);
-                    await _context.SaveChangesAsync();
+                    var re = await _tamanhoService.Update(id, tamanhoViewModel);
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch
                 {
-                    if (!TamanhoExists(tamanho.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    ViewData["mensagemError"] = "Erro ao atualizar!";
                 }
-                return RedirectToAction(nameof(Index));
             }
 
             ModelState.Clear();
             resul.AddToModelState(ModelState);
 
-            return View(tamanho);
+            return View(tamanhoViewModel);
         }
 
         // GET: Funcionario/FuncionarioTamanhos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                var tamanho = await _tamanhoService.FindById(Convert.ToInt32(id));
 
-            var tamanho = await _context.Tamanhos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (tamanho == null)
+                if (tamanho == null)
+                {
+                    throw new Exception();
+                }
+
+                return View(tamanho);
+            }
+            catch
             {
-                return NotFound();
+                ViewData["mensagemError"] = "Erro ao acessar tela de delete!";
+                return RedirectToAction(nameof(Index));
             }
-
-            return View(tamanho);
         }
 
         // POST: Funcionario/FuncionarioTamanhos/Delete/5
@@ -157,19 +162,25 @@ namespace Prisma.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tamanho = await _context.Tamanhos.FindAsync(id);
+            var tamanho = await _tamanhoService.FindById(id);
             if (tamanho != null)
             {
-                _context.Tamanhos.Remove(tamanho);
+                try
+                {
+                    var re = await _tamanhoService.Delete(id);
+                }
+                catch
+                {
+                    ViewData["mensagemError"] = "Erro ao deletar!";
+                }
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TamanhoExists(int id)
         {
-            return _context.Tamanhos.Any(e => e.Id == id);
+            return _tamanhoService.FindById(id).Result != null;
         }
     }
 }

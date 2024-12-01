@@ -6,53 +6,61 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PrismaCatalogo.Context;
-using PrismaCatalogo.Models;
+using PrismaCatalogo.Web.Models;
 using PrismaCatalogo.Validations;
+using PrismaCatalogo.Web.Services.Interfaces;
 
-namespace PrismaCatalogo.Areas.Funcionario.Controllers
+namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
 {
     [Area("Funcionario")]
     public class FuncionarioCategoriasController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private ICategoriaService _categoriasService;
 
-        public FuncionarioCategoriasController(ApplicationDbContext context)
+        public FuncionarioCategoriasController(ICategoriaService categoria)
         {
-            _context = context;
+            _categoriasService = categoria;
         }
 
         // GET: Funcionario/Categorias
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Categorias.Include(c => c.CategoriaPai);
-            return View(await applicationDbContext.ToListAsync());
+            var categorias = await _categoriasService.GetAll();
+
+            if (categorias == null)
+            {
+                categorias = new List<CategoriaViewModel>();
+                ViewData["mensagemError"] = "Erro ao buscar categoria!";
+            }
+
+            return View(categorias);
         }
 
         // GET: Funcionario/Categorias/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                var categoria = await _categoriasService.FindById(Convert.ToInt32(id));
 
-            var categoria = await _context.Categorias
-                .Include(c => c.CategoriaPai)
-                .Include(c => c.CategoriasFilhas)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (categoria == null)
+                if (categoria == null)
+                {
+                    throw new Exception();
+                }
+
+                return View(categoria);
+            }
+            catch
             {
-                return NotFound();
+                ViewData["mensagemError"] = "Erro ao encontar categoria!";
+                return RedirectToAction(nameof(Index));
             }
-
-            return View(categoria);
         }
 
         // GET: Funcionario/Categorias/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["IdPai"] = new SelectList(_context.Categorias, "Id", "Id");
+            ViewData["IdPai"] = new SelectList(await _categoriasService.GetAll() , "Id", "Id");
             return View();
         }
 
@@ -61,52 +69,56 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdPai,Nome")] Categoria categoria)
+        public async Task<IActionResult> Create([Bind("Id,IdPai,Nome")] CategoriaViewModel categoriaViewModel)
         {
-            List<Categoria> categorias = new List<Categoria>();
+            List<CategoriaViewModel> categorias = new List<CategoriaViewModel>();
 
-            if (categoria.IdPai == null)
+            if (categoriaViewModel.IdPai == null)
             {
-                categorias = await _context.Categorias.Where(c => c.IdPai == null).ToListAsync();
+                categorias = (await _categoriasService.GetAll()).Where(c => c.IdPai == null).ToList();
             }
             else
             {
-                categorias = await _context.Categorias.Where(c => c.IdPai ==  categoria.IdPai).ToListAsync();   
+                categorias = (await _categoriasService.GetAll()).Where(c => c.IdPai == categoriaViewModel.IdPai).ToList();   
             }
 
             CategoriaValidator validationRules = new CategoriaValidator(categorias);
 
-            var result = validationRules.Validate(categoria);
+            var result = validationRules.Validate(categoriaViewModel);
 
             if (result.IsValid)
             {
-                _context.Add(categoria);
-                await _context.SaveChangesAsync();
+                var val = await _categoriasService.Create(categoriaViewModel);
                 return RedirectToAction(nameof(Index));
             }
 
             ModelState.Clear();
             result.AddToModelState(ModelState);
 
-            ViewData["IdPai"] = new SelectList(_context.Categorias, "Id", "Id", categoria.IdPai);
-            return View(categoria);
+            ViewData["IdPai"] = new SelectList(await _categoriasService.GetAll(), "Id", "Id", categoriaViewModel.IdPai);
+            return View(categoriaViewModel);
         }
 
         // GET: Funcionario/Categorias/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                var categoria = await _categoriasService.FindById(Convert.ToInt32(id));
 
-            var categoria = await _context.Categorias.FindAsync(id);
-            if (categoria == null)
-            {
-                return NotFound();
+                if (categoria == null)
+                {
+                    throw new Exception();
+                }
+
+                ViewData["IdPai"] = new SelectList(await _categoriasService.GetAll(), "Id", "Id", categoria.IdPai);
+                return View(categoria);
             }
-            ViewData["IdPai"] = new SelectList(_context.Categorias, "Id", "Id", categoria.IdPai);
-            return View(categoria);
+            catch
+            {
+                ViewData["mensagemError"] = "Erro ao encontar categoria!";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // POST: Funcionario/Categorias/Edit/5
@@ -114,70 +126,61 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdPai,Nome")] Categoria categoria)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdPai,Nome")] CategoriaViewModel categoriaViewModel)
         {
-            if (id != categoria.Id)
-            {
-                return NotFound();
-            }
 
-            List<Categoria> categorias = new List<Categoria>();
+            List<CategoriaViewModel> categorias = new List<CategoriaViewModel>();
 
-            if (categoria.IdPai == null) {
-                categorias = await _context.Categorias.Where(c => c.IdPai == null && c.Id != categoria.Id).ToListAsync();
+            if (categoriaViewModel.IdPai == null) {
+                categorias = (await _categoriasService.GetAll()).Where(c => c.IdPai == null && c.Id != categoriaViewModel.Id).ToList();
             }
             else
             {
-                categorias = categorias.Where(c => c.Id == categoria.IdPai && c.Id != categoria.Id).FirstOrDefault().CategoriasFilhas.ToList();
+                categorias = categorias.Where(c => c.Id == categoriaViewModel.IdPai && c.Id != categoriaViewModel.Id).FirstOrDefault().CategoriasFilhas.ToList();
             }
 
             CategoriaValidator validationRules = new CategoriaValidator(categorias);
 
-            var result = validationRules.Validate(categoria);
+            var result = validationRules.Validate(categoriaViewModel);
 
             if (result.IsValid)
             {
                 try
                 {
-                    _context.Update(categoria);
-                    await _context.SaveChangesAsync();
+                    var re = await _categoriasService.Update(id, categoriaViewModel);
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch 
                 {
-                    if (!CategoriaExists(categoria.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    ViewData["mensagemError"] = "Erro ao atualizar!";
                 }
-                return RedirectToAction(nameof(Index));
             }
 
             ModelState.Clear();
             result.AddToModelState(ModelState);
 
-            ViewData["IdPai"] = new SelectList(_context.Categorias, "Id", "Id", categoria.IdPai);
-            return View(categoria);
+            ViewData["IdPai"] = new SelectList(await _categoriasService.GetAll(), "Id", "Id", categoriaViewModel.IdPai);
+            return View(categoriaViewModel);
         }
 
         // GET: Funcionario/Categorias/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                var categoria = await _categoriasService.FindById(Convert.ToInt32(id));
+                if (categoria == null)
+                {
+                    throw new Exception();
+                }
 
-            var categoria = await _context.Categorias.FirstOrDefaultAsync(m => m.Id == id);
-            if (categoria == null)
+                return View(categoria);
+            }
+            catch
             {
-                return NotFound();
+                ViewData["mensagemError"] = "Erro ao acessar tela de delete!";
+                return RedirectToAction(nameof(Index));
             }
-
-            return View(categoria);
         }
 
         // POST: Funcionario/Categorias/Delete/5
@@ -185,9 +188,7 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var categoria = await _context.Categorias
-                .Include(c => c.CategoriasFilhas)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var categoria = await _categoriasService.FindById(id);
 
             if (categoria != null)
             {
@@ -197,23 +198,27 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
 
                 if (result.IsValid)
                 {
-                    _context.Categorias.Remove(categoria);
+                    try{
+                        var val = await _categoriasService.Delete(id);
+                    }
+                    catch
+                    {
+                        ViewData["mensagemError"] = "Erro ao deletar!";
+                    }
                 }
-                else
-                {
-                    ModelState.Clear();
-                    result.AddToModelState(ModelState);
-                    return View(categoria);
-                }
+                
+                ModelState.Clear();
+                result.AddToModelState(ModelState);
+
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+
         }
 
         private bool CategoriaExists(int id)
         {
-            return _context.Categorias.Any(e => e.Id == id);
+            return _categoriasService.FindById(id).Result != null;
         }
     }
 }

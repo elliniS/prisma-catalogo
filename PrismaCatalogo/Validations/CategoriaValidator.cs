@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using PrismaCatalogo.Models;
+using PrismaCatalogo.Web.Models;
 
 namespace PrismaCatalogo.Validations
 {
-    public class CategoriaValidator : AbstractValidator<Categoria>
+    public class CategoriaValidator : AbstractValidator<CategoriaViewModel>
     {
-        public CategoriaValidator(IEnumerable<Categoria> categorias) 
+        public CategoriaValidator(IEnumerable<CategoriaViewModel> categorias) 
         {
             RuleFor(c => c.Nome)
                 .NotEmpty()

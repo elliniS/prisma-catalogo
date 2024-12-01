@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using PrismaCatalogo.Models;
+using PrismaCatalogo.Web.Models;
 using System.Diagnostics;
 
-namespace PrismaCatalogo.Controllers
+namespace PrismaCatalogo.Web.Controllers
 {
     public class HomeController : Controller
     {

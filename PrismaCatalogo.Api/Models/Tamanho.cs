@@ -4,7 +4,7 @@ using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace PrismaCatalogo.Models
+namespace PrismaCatalogo.Api.Models
 {
     public class Tamanho
     {

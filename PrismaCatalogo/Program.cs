@@ -1,21 +1,25 @@
-using PrismaCatalogo.Context;
-using PrismaCatalogo.Repositories.Interfaces;
-using PrismaCatalogo.Repositories;
 using FluentValidation.AspNetCore;
 using System.Reflection;
+using FluentValidation;
+using PrismaCatalogo.Validations;
+using PrismaCatalogo.Web.Services;
+using PrismaCatalogo.Web.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>();
-builder.Services.AddMvc(setup => {
-    // Implementação de código MVC...
-}).AddFluentValidation(fv => fv.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssemblyContaining<TamanhoValidator>();
 
 
-builder.Services.AddTransient<ITamanhoRepository, TamanhoRepository>();
-builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddHttpClient("Api", c => c.BaseAddress = new Uri(builder.Configuration["ServiceUri:Api"]));
+
+builder.Services.AddScoped<ITamanhoService, TamanhoService>();
+builder.Services.AddScoped<ICorService, CorService>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 
 var app = builder.Build();
 

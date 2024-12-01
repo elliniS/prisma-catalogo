@@ -1,51 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PrismaCatalogo.Context;
-using PrismaCatalogo.Models;
+using PrismaCatalogo.Web.Models;
 using PrismaCatalogo.Validations;
+using PrismaCatalogo.Web.Services.Interfaces;
 
-namespace PrismaCatalogo.Areas.Funcionario.Controllers
+namespace PrismaCatalogo.Web.Web.Areas.Funcionario.Controllers
 {
     [Area("Funcionario")]
     public class FuncionarioCoresController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private ICorService _corsService;
 
-        public FuncionarioCoresController(ApplicationDbContext context)
+        public FuncionarioCoresController(ICorService cor)
         {
-            _context = context;
+            _corsService = cor;
         }
 
         // GET: Funcionario/FuncionarioCores
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cores.ToListAsync());
+            var cor = await _corsService.GetAll();
+
+            if(cor == null)
+            {
+                cor = new List<CorViewModel>();
+                ViewData["mensagemError"] = "Erro ao buscar tamanho!";
+            }
+
+            return View(cor);
         }
 
         // GET: Funcionario/FuncionarioCores/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                var cor = await _corsService.FindById(Convert.ToInt32(id));
 
-            var cor = await _context.Cores
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cor == null)
+                if (cor == null)
+                {
+                    throw new Exception();
+                }
+                return View(cor);
+            }
+            catch
             {
-                return NotFound();
+                ViewData["mensagemError"] = "Erro ao buscar cor!";
+                return RedirectToAction(nameof(Index));
             }
-
-            return View(cor);
         }
 
         // GET: Funcionario/FuncionarioCores/Create
@@ -59,22 +64,129 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,CodigoHexadecimal,FotoBytes")] Cor cor, IFormFile? file)
+        public async Task<IActionResult> Create([Bind("Id,Nome,CodigoHexadecimal,FotoBytes")] CorViewModel cor, IFormFile? file)
         {
-            CorValidator validations = new CorValidator(_context.Cores);
+            CorValidator validations = new CorValidator(await _corsService.GetAll());
             var result = validations.Validate(cor);
             
             if (result.IsValid)
             {
-                cor.FotoBytes = ConvertImagemTostring64(file);
-                _context.Add(cor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    cor.FotoBytes = ConvertImagemTostring64(file);
+                    var re = await _corsService.Create(cor);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    ViewData["mensagemError"] = "Erro ao salvar cor!";
+                }
             }
 
             ModelState.Clear();
             result.AddToModelState(ModelState);
             return View(cor);
+        }
+
+        // GET: Funcionario/FuncionarioCores/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            try {
+                var cor = await _corsService.FindById(Convert.ToInt32(id));
+
+                if (cor == null)
+                {
+                    throw new Exception();
+                }
+                return View(cor);
+            }
+            catch
+            {
+                ViewData["mensagemError"] = "Erro ao acessar tela de edição!";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        // POST: Funcionario/FuncionarioCores/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,CodigoHexadecimal,FotoBytes")] CorViewModel cor, IFormFile? file)
+        {
+            List<CorViewModel> cores = (await _corsService.GetAll()).Where(c => c.Id != cor.Id).ToList();
+            CorValidator validations = new CorValidator(cores);
+            var result = validations.Validate(cor);
+
+            if (result.IsValid)
+            {
+                try
+                {
+                    if(file != null)
+                    {
+                        cor.FotoBytes = ConvertImagemTostring64(file);
+                    }
+
+                    var re = await _corsService.Update(id, cor);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    ViewData["mensagemError"] = "Erro ao atualizar!";
+                }
+            }
+
+            ModelState.Clear();
+            result.AddToModelState(ModelState);
+
+            return View(cor);
+        }
+
+        // GET: Funcionario/FuncionarioCores/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            try
+            {
+                var cor = await _corsService.FindById(Convert.ToInt32(id));
+
+                if (cor == null)
+                {
+                    return NotFound();
+                }
+
+                return View(cor);
+            }
+            catch
+            {
+                ViewData["mensagemError"] = "Erro ao acessar tela de delete!";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        // POST: Funcionario/FuncionarioCores/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var cor = await  _corsService.FindById(id);
+            if (cor != null)
+            {
+                try
+                {
+                    var re = await _corsService.Delete(id);
+                }
+                catch
+                {
+                    ViewData["mensagemError"] = "Erro ao deletar!";
+                }
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool CorExists(int id)
+        {
+            return _corsService.FindById(id) != null;
         }
 
         public string ConvertImagemTostring64(IFormFile file)
@@ -101,10 +213,10 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
                 }
                 catch
                 {
-                   
+
                 }
             }
-            
+
             return string64;
         }
 
@@ -112,30 +224,30 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
         {
             try
             {
-            using (var img = new Bitmap(stream))
-            {
-                int oriWidth = img.Width;
-                int oriHeight = img.Height;
-                float percentX = (float)pWidth / (float)oriWidth;
-                float percentY = (float)pHeight / (float)oriHeight;
-                float percent = Math.Min(percentX, percentY);
-
-                int width = (int)(oriWidth * percent);
-                int height = (int)(oriHeight * percent);
-
-                Bitmap newImage = new Bitmap(width, height, PixelFormat.Format24bppRgb);
-
-                using (Graphics g = Graphics.FromImage(newImage))
+                using (var img = new Bitmap(stream))
                 {
-                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    g.DrawImage(img, 0, 0, width, height);
-                }
+                    int oriWidth = img.Width;
+                    int oriHeight = img.Height;
+                    float percentX = (float)pWidth / (float)oriWidth;
+                    float percentY = (float)pHeight / (float)oriHeight;
+                    float percent = Math.Min(percentX, percentY);
 
-                var outputStream = new MemoryStream();
-                newImage.Save(outputStream, ImageFormat.Bmp);
-                outputStream.Position = 0;
+                    int width = (int)(oriWidth * percent);
+                    int height = (int)(oriHeight * percent);
 
-                return outputStream;
+                    Bitmap newImage = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+
+                    using (Graphics g = Graphics.FromImage(newImage))
+                    {
+                        g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        g.DrawImage(img, 0, 0, width, height);
+                    }
+
+                    var outputStream = new MemoryStream();
+                    newImage.Save(outputStream, ImageFormat.Bmp);
+                    outputStream.Position = 0;
+
+                    return outputStream;
                 }
             }
             catch
@@ -143,104 +255,6 @@ namespace PrismaCatalogo.Areas.Funcionario.Controllers
                 throw new Exception("Deu ruim");
             }
 
-        }
-
-        // GET: Funcionario/FuncionarioCores/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var cor = await _context.Cores.FindAsync(id);
-            if (cor == null)
-            {
-                return NotFound();
-            }
-            return View(cor);
-        }
-
-        // POST: Funcionario/FuncionarioCores/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,CodigoHexadecimal,FotoBytes")] Cor cor)
-        {
-            if (id != cor.Id)
-            {
-                return NotFound();
-            }
-
-            List<Cor> cores = _context.Cores.Where(c => c.Id != cor.Id).ToList();
-            CorValidator validations = new CorValidator(cores);
-            var result = validations.Validate(cor);
-
-            if (result.IsValid)
-            {
-                try
-                {
-                    _context.Update(cor);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CorExists(cor.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-
-                return RedirectToAction(nameof(Index));
-            }
-
-            ModelState.Clear();
-            result.AddToModelState(ModelState);
-
-            return View(cor);
-        }
-
-        // GET: Funcionario/FuncionarioCores/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var cor = await _context.Cores
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cor == null)
-            {
-                return NotFound();
-            }
-
-            return View(cor);
-        }
-
-        // POST: Funcionario/FuncionarioCores/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var cor = await _context.Cores.FindAsync(id);
-            if (cor != null)
-            {
-                _context.Cores.Remove(cor);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CorExists(int id)
-        {
-            return _context.Cores.Any(e => e.Id == id);
         }
     }
 }

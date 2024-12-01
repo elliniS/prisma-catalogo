@@ -1,15 +1,14 @@
 ﻿using FluentValidation;
 using Newtonsoft.Json.Linq;
-using PrismaCatalogo.Context;
-using PrismaCatalogo.Models;
+using PrismaCatalogo.Web.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 
 namespace PrismaCatalogo.Validations
 {
-    public class TamanhoValidator : AbstractValidator<Tamanho>
+    public class TamanhoValidator : AbstractValidator<TamanhoViewModel>
     {
-        public TamanhoValidator(IEnumerable<Tamanho> tamanhos)
+        public TamanhoValidator(IEnumerable<TamanhoViewModel> tamanhos)
         {
             RuleFor(x => x.Nome)
                 .NotEmpty()

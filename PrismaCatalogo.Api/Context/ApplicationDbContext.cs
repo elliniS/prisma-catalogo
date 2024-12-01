@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using dotenv.net;
-using PrismaCatalogo.Models;
+using PrismaCatalogo.Api.Models;
 
-namespace PrismaCatalogo.Context
+namespace PrismaCatalogo.Api.Context
 {
     public class ApplicationDbContext : DbContext
     {
@@ -22,6 +22,12 @@ namespace PrismaCatalogo.Context
                 e.HasIndex(t => t.Nome).IsUnique(true);
             });
 
+            modelBuilder.Entity<Cor>(c =>
+            {
+                c.HasKey(t => t.Id);
+                c.HasIndex(t => t.Nome).IsUnique(true);
+            });
+
             modelBuilder.Entity<Categoria>(e => {
                 e.HasIndex(c => new { c.IdPai, c.Nome }).IsUnique(true);
 
@@ -32,16 +38,10 @@ namespace PrismaCatalogo.Context
                 .WithOne(e => e.CategoriaPai)
                 .HasForeignKey(e => e.IdPai)
                 .HasPrincipalKey(e => e.Id);
-
-            modelBuilder.Entity<Cor>(c =>
-            {
-                c.HasKey(t => t.Id);
-                c.HasIndex(t => t.Nome).IsUnique(true);
-            });
         }
 
         public DbSet<Tamanho> Tamanhos { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Cor> Cores { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 
-namespace PrismaCatalogo.Areas.Funcionario.Controllers
+namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
 {
     [Area("Funcionario")]
     public class FuncionarioController : Controller

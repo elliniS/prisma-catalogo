@@ -1,15 +1,14 @@
 ﻿using FluentValidation;
 using Newtonsoft.Json.Linq;
-using PrismaCatalogo.Context;
-using PrismaCatalogo.Models;
+using PrismaCatalogo.Web.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 
 namespace PrismaCatalogo.Validations
 {
-    public class CorValidator : AbstractValidator<Cor>
+    public class CorValidator : AbstractValidator<CorViewModel>
     {
-        public CorValidator(IEnumerable<Cor> cor)
+        public CorValidator(IEnumerable<CorViewModel> cor)
         {
             RuleFor(x => x.Nome)
                 .NotEmpty()

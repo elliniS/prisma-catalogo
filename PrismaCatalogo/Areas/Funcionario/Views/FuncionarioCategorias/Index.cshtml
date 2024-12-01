@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PrismaCatalogo.Models.Categoria>
+﻿@model IEnumerable<PrismaCatalogo.Web.Models.CategoriaViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CategoriaPai)
+                @Html.DisplayNameFor(model => model.IdPai)
             </th>
             <th></th>
         </tr>
@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CategoriaPai.Id)
+                @Html.DisplayFor(modelItem => item.IdPai)
             </td>
                 <td class="text-end">
                 <a class="cor-primaria" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-fill"></i></a> |

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 
-namespace PrismaCatalogo.Models
+namespace PrismaCatalogo.Api.Models
 {
     public class Cor
     {

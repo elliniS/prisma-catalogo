@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismaCatalogo", "PrismaCatalogo\PrismaCatalogo.csproj", "{5830FB3E-6FC9-4739-A894-DEA03E1E99CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismaCatalogo.Web", "PrismaCatalogo\PrismaCatalogo.Web.csproj", "{5830FB3E-6FC9-4739-A894-DEA03E1E99CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismaCatalogo.Api", "PrismaCatalogo.Api\PrismaCatalogo.Api.csproj", "{8A4A5B1F-0A6A-4C8B-A2EB-FEFAC624597B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{04E100C3-6E63-4BEA-B61F-6F5D0B119742}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{EE7398A8-FEC1-456C-9751-CD3F512866C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +21,17 @@ Global
 		{5830FB3E-6FC9-4739-A894-DEA03E1E99CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5830FB3E-6FC9-4739-A894-DEA03E1E99CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5830FB3E-6FC9-4739-A894-DEA03E1E99CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A4A5B1F-0A6A-4C8B-A2EB-FEFAC624597B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4A5B1F-0A6A-4C8B-A2EB-FEFAC624597B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4A5B1F-0A6A-4C8B-A2EB-FEFAC624597B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4A5B1F-0A6A-4C8B-A2EB-FEFAC624597B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5830FB3E-6FC9-4739-A894-DEA03E1E99CB} = {EE7398A8-FEC1-456C-9751-CD3F512866C0}
+		{8A4A5B1F-0A6A-4C8B-A2EB-FEFAC624597B} = {04E100C3-6E63-4BEA-B61F-6F5D0B119742}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E61FCF2-48EA-4B8E-9B48-557D4407AD07}

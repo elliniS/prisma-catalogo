@@ -1,4 +1,4 @@
-﻿@model PrismaCatalogo.Models.Categoria
+﻿@model PrismaCatalogo.Web.Models.CategoriaViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -17,10 +17,10 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoriaPai)
+            @Html.DisplayNameFor(model => model.IdPai)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoriaPai.Id)
+            @Html.DisplayFor(model => model.IdPai)
         </dd>
         @if(Model.CategoriasFilhas != null && Model.CategoriasFilhas.Count() > 0)
         {
