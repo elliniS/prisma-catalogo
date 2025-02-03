@@ -1,0 +1,90 @@
+﻿@model PrismaCatalogo.Web.Models.ProdutoViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Categoria</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Observacao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Observacao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ativo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ativo)
+        </dd>
+        @if (Model.ProdutosFilhos != null && Model.ProdutosFilhos.Count() > 0)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ProdutosFilhos):
+            </dt>
+
+            <div></div>
+
+            <div class="col-sm-7">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => Model.ProdutosFilhos.FirstOrDefault().Nome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => Model.ProdutosFilhos.FirstOrDefault().Cor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => Model.ProdutosFilhos.FirstOrDefault().Tamanho)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ProdutosFilhos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cor.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tamanho.Nome)
+                                </td>
+                                <td class="text-end">
+                                    <a class="cor-primaria" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-fill"></i></a> |
+                                    <a class="cor-primaria" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye-fill"></i></a> |
+                                    <a class="cor-primaria" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+    <a asp-action="Index">Voltar para listagem</a>
+</div>

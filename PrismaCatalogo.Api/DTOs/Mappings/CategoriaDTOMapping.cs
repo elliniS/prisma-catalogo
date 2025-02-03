@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using PrismaCatalogo.Api.DTOs.CategoriaDTO;
-using PrismaCatalogo.Api.DTOs.CorDTO;
 using PrismaCatalogo.Api.Models;
 using System.Linq;
 

@@ -5,6 +5,10 @@
         ITamanhoRepository TamanhoRepository { get; }
         ICorRepository CorRepository { get; }
         ICategoriaRepository CategoriaRepository { get; }
+        IProdutoRepository ProdutoRepository { get; }
+        IProdutoFilhoRepository ProdutoFilhoRepository { get; }
+        IProdutoFotoRepository ProdutoFotoRepository { get; }
+        IProdutoFilhoFotoRepository produtoFilhoFotoRepository { get; }
         Task CommitAsync();
     }
 }

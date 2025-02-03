@@ -12,5 +12,8 @@ namespace PrismaCatalogo.Api.Models
         public string? CodigoHexadecimal { get; set; }
         [Display(Name = "Foto")]
         public string? FotoBytes { get; set; }
+
+
+        public ICollection<ProdutoFilho>? ProdutosFilhos { get; set; }
     }
 }

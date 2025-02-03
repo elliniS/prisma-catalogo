@@ -17,6 +17,11 @@ namespace PrismaCatalogo.Api.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<Foto>(f =>
+            //{
+            //    f.HasKey(t => t.Id);
+            //});
+
             modelBuilder.Entity<Tamanho>(e => {
                 e.HasKey(t => t.Id);
                 e.HasIndex(t => t.Nome).IsUnique(true);
@@ -30,7 +35,6 @@ namespace PrismaCatalogo.Api.Context
 
             modelBuilder.Entity<Categoria>(e => {
                 e.HasIndex(c => new { c.IdPai, c.Nome }).IsUnique(true);
-
             });
 
             modelBuilder.Entity<Categoria>()
@@ -38,10 +42,63 @@ namespace PrismaCatalogo.Api.Context
                 .WithOne(e => e.CategoriaPai)
                 .HasForeignKey(e => e.IdPai)
                 .HasPrincipalKey(e => e.Id);
+
+            modelBuilder.Entity<Produto>(c =>
+            {
+                c.HasKey(t => t.Id);
+                c.HasIndex(t => t.Nome).IsUnique(true);
+            });
+
+            modelBuilder.Entity<Produto>()
+                .HasMany(p => p.ProdutosFilhos)
+                .WithOne(p => p.Produto)
+                .HasForeignKey(f => f.ProdutoId);
+
+            modelBuilder.Entity<Produto>()
+                .HasMany(p => p.Fotos)
+                .WithOne(p => p.Produto)
+                .HasForeignKey(f => f.ProdutoId);
+
+            modelBuilder.Entity<ProdutoFilho>(c =>
+            {
+                c.HasKey(t => t.Id);
+                //c.HasIndex(t => t.Nome).IsUnique(true);
+                c.HasIndex(p => new { p.ProdutoId, p.CorId, p.TamanhoId }).IsUnique(true);
+                c.Property(t => t.Nome).IsRequired(false);
+            });
+
+            modelBuilder.Entity<ProdutoFilho>()
+                .HasOne(f => f.Cor)
+                .WithMany(p => p.ProdutosFilhos)
+                .HasForeignKey(f => f.CorId);
+
+            modelBuilder.Entity<ProdutoFilho>()
+                .HasOne(f => f.Tamanho)
+                .WithMany(p => p.ProdutosFilhos)
+                .HasForeignKey(f => f.TamanhoId);
+
+            modelBuilder.Entity<ProdutoFilho>()
+                .HasMany(p => p.Fotos)
+                .WithOne(p => p.ProdutoFilho)
+                .HasForeignKey(f => f.ProdutoFilhoId);
+
+            modelBuilder.Entity<ProdutoFoto>(c =>
+            {
+                c.HasKey(t => t.Id);
+            });
+
+            modelBuilder.Entity<ProdutoFilhoFoto>(c =>
+            {
+                c.HasKey(t => t.Id);
+            });
         }
 
         public DbSet<Tamanho> Tamanhos { get; set; }
         public DbSet<Cor> Cores { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<ProdutoFilho> ProdutosFilhos { get; set; }
+        public DbSet<ProdutoFoto> ProdutosFoto { get; set; }
+        public DbSet<ProdutoFilhoFoto> produtoFilhoFotos { get; set; }
     }
 }

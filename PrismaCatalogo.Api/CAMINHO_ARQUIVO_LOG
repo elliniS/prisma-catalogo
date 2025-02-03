@@ -1,0 +1,838 @@
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Este host não é conhecido.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Attempted to invoke a deleted method implementation. This can happen when a method is deleted or its name or signature is changed while the application is running.
+Error: 0 - Attempted to invoke a deleted method implementation. This can happen when a method is deleted or its name or signature is changed while the application is running.
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Error: 0 - Expression of type 'System.Collections.Generic.IEnumerable`1[System.String]' cannot be used for parameter of type 'System.Collections.Generic.IList`1[System.String]' of method 'System.Collections.Generic.IList`1[System.String] PopulateList[String](System.Collections.Generic.IList`1[System.String], System.Collections.Generic.IList`1[System.String])' (Parameter 'arg0')
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 1 - An unhandled exception has occurred while executing the request.
+Error: 1 - An unhandled exception has occurred while executing the request.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 1 - An unhandled exception has occurred while executing the request.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 1 - An unhandled exception has occurred while executing the request.
+Error: 1 - An unhandled exception has occurred while executing the request.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 1 - An unhandled exception has occurred while executing the request.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 1 - An unhandled exception has occurred while executing the request.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 1 - An unhandled exception has occurred while executing the request.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Error mapping types.
+
+Mapping types:
+List`1 -> IEnumerable`1
+System.Collections.Generic.List`1[[PrismaCatalogo.Api.Models.ProdutoFilho, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[PrismaCatalogo.Api.Repositories.ProdutoFilhoRepository, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+Error: 0 - Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[PrismaCatalogo.Api.Models.ProdutoFilho, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[PrismaCatalogo.Api.Repositories.ProdutoFilhoRepository, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[PrismaCatalogo.Api.Models.ProdutoFilho, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[PrismaCatalogo.Api.Repositories.ProdutoFilhoRepository, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+Error: 0 - Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[PrismaCatalogo.Api.Models.ProdutoFilho, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[PrismaCatalogo.Api.Repositories.ProdutoFilhoRepository, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+Error: 1 - An unhandled exception has occurred while executing the request.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 1 - An unhandled exception has occurred while executing the request.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Error mapping types.
+
+Mapping types:
+List`1 -> IEnumerable`1
+System.Collections.Generic.List`1[[PrismaCatalogo.Api.Models.ProdutoFilho, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[PrismaCatalogo.Api.DTOs.ProdutoFilhoDTO.ProdutoFilhoResponseDTO, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+Error: 0 - Error mapping types.
+
+Mapping types:
+List`1 -> IEnumerable`1
+System.Collections.Generic.List`1[[PrismaCatalogo.Api.Models.ProdutoFilho, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[PrismaCatalogo.Api.DTOs.ProdutoFilhoDTO.ProdutoFilhoResponseDTO, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Error mapping types.
+
+Mapping types:
+List`1 -> IEnumerable`1
+System.Collections.Generic.List`1[[PrismaCatalogo.Api.Models.Produto, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[PrismaCatalogo.Api.DTOs.ProdutoDTO.ProdutoResponseDTO, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Produto não encotrado
+Error: 0 - Produto não encotrado
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Produto não encotrado
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Missing type map configuration or unsupported mapping.
+
+Mapping types:
+List`1 -> ProdutoFilhoResponseDTO
+System.Collections.Generic.List`1[[PrismaCatalogo.Api.Models.ProdutoFilho, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> PrismaCatalogo.Api.DTOs.ProdutoFilhoDTO.ProdutoFilhoResponseDTO
+Error: 0 - Missing type map configuration or unsupported mapping.
+
+Mapping types:
+List`1 -> ProdutoFilhoResponseDTO
+System.Collections.Generic.List`1[[PrismaCatalogo.Api.Models.ProdutoFilho, PrismaCatalogo.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> PrismaCatalogo.Api.DTOs.ProdutoFilhoDTO.ProdutoFilhoResponseDTO
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Reading as 'System.Int32' is not supported for fields having DataTypeName 'double precision'
+Error: 0 - Reading as 'System.Int32' is not supported for fields having DataTypeName 'double precision'
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Reading as 'System.Int32' is not supported for fields having DataTypeName 'double precision'
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Reading as 'System.Int32' is not supported for fields having DataTypeName 'double precision'
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 1 - An unhandled exception has occurred while executing the request.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Error: 0 - An exception has been raised that is likely due to a transient failure.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.
+Error: 2 - Connection ID "17509995382891872533", Request ID "80000119-0007-f300-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Dados inconssistentes
+Error: 0 - Dados inconssistentes
+Error: 0 - Dados inconssistentes
+Error: 2 - Connection ID "17870283344491577701", Request ID "80000167-0005-f800-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Dados inconssistentes
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 2 - Connection ID "18086456118015426918", Request ID "8000016d-0003-fb00-b63f-84710c7967bb": An unhandled exception was thrown by the application.
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Dados inconssistentes
+Error: 0 - Dados inconssistentes
+Error: 0 - Dados inconssistentes
+Information: 0 - Application started. Press Ctrl+C to shut down.
+Information: 0 - Hosting environment: Development
+Information: 0 - Content root path: C:\Users\faculdade\source\repos\PrismaCatalogo\PrismaCatalogo.Api
+Error: 0 - Tamnho não encontrado
+Error: 0 - An error occurred while saving the entity changes. See the inner exception for details.

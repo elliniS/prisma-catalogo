@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PrismaCatalogo.Web.Models.ProdutoFilhoViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p class="text-end">
+    <button type="button" class="btn btn-padrao"><a class="cor" asp-action="Create" asp-route-produtoId="@ViewBag.ProdutoId">Novo +</a></button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th class ="text-center">
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th class ="text-center">
+                @Html.DisplayNameFor(model => model.Preco)
+            </th class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.QuantEstoque)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                        @if(item.FotoCapa != null)
+                    {
+                        <div class="product-view rounded" style="background-image: url('data:image/png;base64,@Html.DisplayFor(modelItem => item.FotoCapa.FotoBytes)')"></div>
+                    }
+                    else
+                    {
+                        <div class="product-view rounded" ><i class="bi bi-file-image-fill"></i></div>
+                    }
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.QuantEstoque)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td class="text-end">
+                    <a class="cor-primaria" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-fill"></i></a> |
+                    <a class="cor-primaria" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye-fill"></i></a> |
+                    <a class="cor-primaria" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+<div class="text-center">
+    <a asp-action="Index" asp-controller="FuncionarioProdutos">Voltar para listagem de produtos</a>
+</div>

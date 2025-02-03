@@ -20,6 +20,8 @@ builder.Services.AddHttpClient("Api", c => c.BaseAddress = new Uri(builder.Confi
 builder.Services.AddScoped<ITamanhoService, TamanhoService>();
 builder.Services.AddScoped<ICorService, CorService>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
+builder.Services.AddScoped<IProdutoFilhoService, ProdutoFilhoService>();
 
 var app = builder.Build();
 

@@ -7,7 +7,11 @@ namespace PrismaCatalogo.Api.Repositories
     {
         private ITamanhoRepository? _tamanho;
         private ICorRepository? _cor;
-        private ICategoriaRepository _categoria;
+        private ICategoriaRepository? _categoria;
+        private IProdutoRepository? _produto;
+        private IProdutoFilhoRepository? _produtoFilho;
+        private IProdutoFotoRepository? _produtoFoto;
+        private IProdutoFilhoFotoRepository _produtoFilhoFoto;
 
         public ApplicationDbContext _context;
         
@@ -41,9 +45,41 @@ namespace PrismaCatalogo.Api.Repositories
             }
         }
 
+        public IProdutoRepository ProdutoRepository
+        {
+            get
+            {
+                return _produto = _produto ?? new ProdutoRepository(_context);
+            }
+        }
+
+        public IProdutoFilhoRepository ProdutoFilhoRepository
+        {
+            get
+            {
+                return _produtoFilho = _produtoFilho ?? new ProdutoFilhoRepository(_context);
+            }
+        }
+
         public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public IProdutoFotoRepository ProdutoFotoRepository
+        {
+            get
+            {
+                return _produtoFoto = _produtoFoto ?? new ProdutoFotoRepository(_context);
+            }
+        }
+
+        public IProdutoFilhoFotoRepository produtoFilhoFotoRepository
+        {
+            get
+            {
+                return _produtoFilhoFoto = _produtoFilhoFoto ?? new ProdutoFilhoFotoRepository(_context);
+            }
         }
 
         public void Dispose() 

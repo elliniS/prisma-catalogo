@@ -20,7 +20,6 @@ namespace PrismaCatalogo.Validations
         }
 
         public override bool IsValid(ValidationContext<T> context, TProperty value)
-        
         {
             if (value is not null && _values != null)
             {

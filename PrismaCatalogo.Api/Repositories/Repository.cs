@@ -21,7 +21,12 @@ namespace PrismaCatalogo.Api.Repositories
 
         public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate)
         {
-            return await _context.Set<T>().FirstOrDefaultAsync(predicate);
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(predicate);
+        }
+
+        public async Task<IEnumerable<T>> GetListAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().AsNoTracking().Where(predicate).ToListAsync();
         }
 
         public T Create(T entity)
