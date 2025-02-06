@@ -367,3 +367,5 @@ FodyWeavers.xsd
 
 #Migrations
 Migrations/
+/PrismaCatalogo.Api/Settings.cs
+/PrismaCatalogo.Api/CAMINHO_ARQUIVO_LOG
