@@ -1,6 +1,6 @@
-using FluentValidation.AspNetCore;
-using System.Reflection;
 using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using PrismaCatalogo.Validations;
 using PrismaCatalogo.Web.Services;
 using PrismaCatalogo.Web.Services.Interfaces;
@@ -22,6 +22,15 @@ builder.Services.AddScoped<ICorService, CorService>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
 builder.Services.AddScoped<IProdutoFilhoService, ProdutoFilhoService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie((options) =>
+    {
+        options.LoginPath = "/login";
+        options.AccessDeniedPath = "/unauthorized";
+    });
 
 var app = builder.Build();
 
@@ -38,7 +47,22 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "Auth.Login",
+    pattern: "login",
+    defaults: new { controller = "Auth", action = "Login" });
+app.MapControllerRoute(
+    name: "Auth.Logout",
+    pattern: "logout",
+    defaults: new { controller = "Auth", action = "Logout" });
+
+app.MapControllerRoute(
+    name: "auth.Unauthorized",
+    pattern: "unauthorized",
+    defaults: new { controller = "Auth", action = "Unauthorized" });
 
 app.MapControllerRoute(
     name: "areas",
@@ -47,6 +71,7 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+);
 
 app.Run();

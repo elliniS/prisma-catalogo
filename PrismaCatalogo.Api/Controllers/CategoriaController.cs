@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrismaCatalogo.Api.DTOs.CategoriaDTO;
@@ -28,6 +29,7 @@ namespace PrismaCatalogo.Api.Controllers
         }
 
         [HttpGet]
+        //[Authorize(Roles = "Funcionario,Cliente")]
         public async Task<ActionResult<IEnumerable<CategoriaResponseDTO>>> Get()
         {
             var categorias = await _unitOfWork.CategoriaRepository.GetAllAsync();

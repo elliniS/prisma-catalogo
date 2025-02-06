@@ -14,48 +14,68 @@
 
         <nav class="navbar navbar-dark bg-dark navbar-primario">
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="offcanvas offcanvas-end text-bg-dark cor-primaria-background" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-                    <div class="offcanvas-header">
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item">
-                                <h3><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></h3>
-                            </li>
-                        </ul>
+                <div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end text-bg-dark cor-primaria-background" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
 
-                        @* Temporario *@
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item">
-                                <h3><a class="nav-link" asp-area="Funcionario" asp-controller="FuncionarioTamanhos" asp-action="Index">Tamanhos</a></h3>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item">
-                                <h3><a class="nav-link" asp-area="Funcionario" asp-controller="FuncionarioCategorias" asp-action="Index">Categorias</a></h3>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item">
-                                <h3><a class="nav-link" asp-area="Funcionario" asp-controller="FuncionarioCores" asp-action="Index">Cores</a></h3>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <li class="nav-item">
-                                <h3><a class="nav-link" asp-area="Funcionario" asp-controller="FuncionarioProdutos" asp-action="Index">Produtos</a></h3>
-                            </li>
-                        </ul>
-                        @* fim temporario *@
+                        <div class="offcanvas-header">
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <h3><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></h3>
+                                </li>
+                            </ul>
+
+                            @* Temporario *@
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <h3><a class="nav-link" asp-area="Funcionario" asp-controller="FuncionarioTamanhos" asp-action="Index">Tamanhos</a></h3>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <h3><a class="nav-link" asp-area="Funcionario" asp-controller="FuncionarioCategorias" asp-action="Index">Categorias</a></h3>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <h3><a class="nav-link" asp-area="Funcionario" asp-controller="FuncionarioCores" asp-action="Index">Cores</a></h3>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <h3><a class="nav-link" asp-area="Funcionario" asp-controller="FuncionarioProdutos" asp-action="Index">Produtos</a></h3>
+                                </li>
+                            </ul>
+
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                <li class="nav-item">
+                                    <h3><a class="nav-link" asp-area="Funcionario" asp-controller="FuncionarioUsuarios" asp-action="Index">Usuarios</a></h3>
+                                </li>
+                            </ul>
+                            @* fim temporario *@
+                        </div>
                     </div>
+                    }
                 </div>
 
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Prisma</a>
 
-                <div></div>
+
+
+                <div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link text-light" asp-area="" asp-route="Auth.Logout">Logout</a>
+
+                    }
+                </div>
             </div>
         </nav>
 

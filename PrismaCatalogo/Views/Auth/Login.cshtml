@@ -1,0 +1,43 @@
+﻿@model PrismaCatalogo.Web.Models.UsuarioLoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="flex-md-column">
+    <div class="text-center">
+        <h1 class="display-4">Login</h1>
+    </div>
+
+    @if (ViewBag.Fail != null)
+    {
+        <div class="alert alert-danger">Usuário ou senha incorretos!</div>
+    }
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <form method="post">
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label asp-for="NomeUsuario" class="form-label"></label>
+                    <input asp-for="NomeUsuario" class="form-control" />
+                </div>
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <label asp-for="Senha" class="form-label"></label>
+                    <input asp-for="Senha" type="password" class="form-control" />
+                </div>
+               @*  <div class="row mb-4">
+                    <div class="col d-flex justify-content-center">
+                        <div class="form-check">
+                            <input asp-for="FgLembra" class="form-check-input" type="checkbox" checked />
+                            <label asp-for="FgLembra" class="form-check-label"></label>
+                        </div>
+                    </div>
+                </div> *@
+
+                <div class="form-group text-center">
+                    <button data-mdb-ripple-init type="submit" class="btn btn-padrao">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

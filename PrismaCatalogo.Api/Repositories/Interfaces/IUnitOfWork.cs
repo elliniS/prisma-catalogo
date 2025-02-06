@@ -9,6 +9,7 @@
         IProdutoFilhoRepository ProdutoFilhoRepository { get; }
         IProdutoFotoRepository ProdutoFotoRepository { get; }
         IProdutoFilhoFotoRepository produtoFilhoFotoRepository { get; }
+        IUsuarioRepository UsuarioRepository { get; }
         Task CommitAsync();
     }
 }

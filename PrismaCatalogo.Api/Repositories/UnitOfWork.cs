@@ -12,6 +12,7 @@ namespace PrismaCatalogo.Api.Repositories
         private IProdutoFilhoRepository? _produtoFilho;
         private IProdutoFotoRepository? _produtoFoto;
         private IProdutoFilhoFotoRepository _produtoFilhoFoto;
+        private IUsuarioRepository _usuarioRepository; 
 
         public ApplicationDbContext _context;
         
@@ -79,6 +80,14 @@ namespace PrismaCatalogo.Api.Repositories
             get
             {
                 return _produtoFilhoFoto = _produtoFilhoFoto ?? new ProdutoFilhoFotoRepository(_context);
+            }
+        }
+
+        public IUsuarioRepository UsuarioRepository
+        {
+            get
+            {
+                return _usuarioRepository = _usuarioRepository ?? new UsuarioRepository(_context);
             }
         }
 
