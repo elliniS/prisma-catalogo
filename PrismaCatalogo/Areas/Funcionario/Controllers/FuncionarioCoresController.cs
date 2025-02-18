@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using PrismaCatalogo.Web.Models;
 using PrismaCatalogo.Validations;
 using PrismaCatalogo.Web.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PrismaCatalogo.Web.Web.Areas.Funcionario.Controllers
 {
+    [Authorize(Roles = "Funcionario")]
     [Area("Funcionario")]
     public class FuncionarioCoresController : Controller
     {

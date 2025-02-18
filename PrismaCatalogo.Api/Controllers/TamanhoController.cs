@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrismaCatalogo.Api.DTOs.TamanhoDTO;
@@ -12,6 +13,7 @@ using PrismaCatalogo.Api.Validations;
 
 namespace PrismaCatalogo.Api.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TamanhoController : ControllerBase

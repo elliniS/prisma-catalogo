@@ -8,6 +8,7 @@ namespace PrismaCatalogo.Web.Services
 {
     public class CategoriaService : ICategoriaService
     {
+        
         private readonly IHttpClientFactory _clientFactory;
         private readonly JsonSerializerOptions? _options;
         private const string apiEndpoint = "/api/Categoria/";

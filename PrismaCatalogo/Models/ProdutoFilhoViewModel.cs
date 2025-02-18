@@ -11,7 +11,7 @@ namespace PrismaCatalogo.Web.Models
         [Display(Name = "Quantidade em estoque")]
         public int? QuantEstoque { get; set; }
         public bool Ativo { get; set; }
-        public ProdutoFilhoFotoViewModel FotoCapa { get; set; }
+        public FotoViewModel FotoCapa { get; set; }
 
         [Display(Name = "Tamanho")]
         public int? TamanhoId { get; set; }
@@ -20,6 +20,6 @@ namespace PrismaCatalogo.Web.Models
         public int? CorId { get; set; }
         public CorViewModel Cor { get; set; }
 
-        public List<ProdutoFilhoFotoViewModel>? Fotos { get; set; }
+        public List<FotoViewModel>? Fotos { get; set; }
     }
 }

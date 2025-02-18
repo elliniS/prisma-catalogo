@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
 {
+    [Authorize(Roles = "Funcionario")]
     [Area("Funcionario")]
     public class FuncionarioProdutosFilhosController : Controller
     {
@@ -151,7 +153,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 try
                 {
                     if (produtoFilhoViewModel.Fotos == null)
-                        produtoFilhoViewModel.Fotos = new List<ProdutoFilhoFotoViewModel>();
+                        produtoFilhoViewModel.Fotos = new List<FotoViewModel>();
 
                     produtoFilhoViewModel.Fotos.AddRange(GerenciaFotos(files));
 
@@ -217,13 +219,13 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
             return _produtoFilhoService.FindById(id).Result != null;
         }
 
-        private List<ProdutoFilhoFotoViewModel> GerenciaFotos(IEnumerable<IFormFile>? files)
+        private List<FotoViewModel> GerenciaFotos(IEnumerable<IFormFile>? files)
         {
-            var produtosFotos = new List<ProdutoFilhoFotoViewModel>();
+            var produtosFotos = new List<FotoViewModel>();
 
             foreach (var file in files)
             {
-                var foto = new ProdutoFilhoFotoViewModel();
+                var foto = new FotoViewModel();
                 foto.FotoBytes = ConvertImagemTostring64(file);
                 foto.FgExcluir = false;
 

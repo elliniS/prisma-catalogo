@@ -16,6 +16,7 @@ using PrismaCatalogo.Api.Validations;
 
 namespace PrismaCatalogo.Api.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
@@ -63,6 +64,7 @@ namespace PrismaCatalogo.Api.Controllers
             return Ok(usuarioResponse);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<UsuarioResponseDTO>> Post(UsuarioRequestDTO usuarioRequest)
         {
@@ -115,6 +117,7 @@ namespace PrismaCatalogo.Api.Controllers
             return Ok(usuarioResponse);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
         public async Task<UsuarioTokenResponseDTO> Login(UsuarioLoginRequestDTO usuarioRequest)

@@ -6,7 +6,7 @@
 
 <div class="flex-md-column">
     <div>
-        <h1 class="text-center">Funcionário</h1>
+        <h1 class="text-center">Usuario</h1>
     </div>
 
     <div class="row justify-content-center">
@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label asp-for="Senha" class="control-label"></label>
                     <input asp-for="Senha" type="password" class="form-control" />
-                    <span asp-validation-for="Senha" class="text-danger"></span>
+                    <span asp-validation-for="Senha"  class="text-danger"></span>
                 </div>
 
                 <div class="form-group text-center">
@@ -37,10 +37,6 @@
                 </div>
             </form>
         </div>
-    </div>
-
-    <div class="text-center">
-        <a asp-action="Index">Voltar para listagem</a>
     </div>
 </div>
 

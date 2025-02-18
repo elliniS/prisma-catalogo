@@ -13,8 +13,8 @@ namespace PrismaCatalogo.Api.DTOs.ProdutoFilhoDTO
         public int QuantEstoque { get; set; }
         public bool Ativo {  get; set; }
 
-        //public int? CorId { get; set; }
-        //public int? TamanhoId { get; set; }
+        public int? CorId { get; set; }
+        public int? TamanhoId { get; set; }
         public CorResponseDTO Cor { get; set; }
         public TamanhoResponseDTO Tamanho { get; set; }
 

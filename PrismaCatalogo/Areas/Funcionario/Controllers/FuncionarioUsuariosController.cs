@@ -22,7 +22,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         // GET: Funcionario/FuncionarioUsuarios
         public async Task<IActionResult> Index()
         {
-            var usuarios = await _usuarioService.GetAll();
+            var usuarios = (await _usuarioService.GetAll()).Where(u => u.UsuarioTipo == Enuns.EnumUsuarioTipo.Funcionario);
 
             if(usuarios == null)
             {

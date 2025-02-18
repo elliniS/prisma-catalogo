@@ -30,16 +30,19 @@
     </thead>
     <tbody>
         @foreach (var item in Model) {
-            <tr> 
+            <tr>
+                
                 <td>
-                    @if(item.FotoCapa != null)
-                    {
-                        <div class="product-view rounded" style="background-image: url('data:image/png;base64,@Html.DisplayFor(modelItem => item.FotoCapa.FotoBytes)')"></div>
-                    }
-                    else
-                    {
-                        <div class="product-view rounded" ><i class="bi bi-file-image-fill"></i></div>
-                    }
+                    <div class="product-view rounded">
+                        @if(item.FotoCapa != null)
+                        {
+                            <img class="mx-auto d-block" src="data:image/png;base64,@Html.DisplayFor(modelItem => item.FotoCapa.FotoBytes)">
+                        }
+                        else
+                        {
+                            <div><i class="bi bi-file-image-fill"></i></div>
+                        }
+                    </div>
                 </td>
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Id)

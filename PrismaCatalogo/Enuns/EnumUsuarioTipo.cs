@@ -2,7 +2,7 @@
 {
     public enum EnumUsuarioTipo
     {
-        Client = 0,
+        Cliente = 0,
         Funcionario = 1
     }
 }

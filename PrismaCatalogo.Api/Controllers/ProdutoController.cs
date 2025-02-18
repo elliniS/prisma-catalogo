@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PrismaCatalogo.Api.DTOs.CorDTO;
@@ -13,6 +14,7 @@ using PrismaCatalogo.Api.Validations;
 
 namespace PrismaCatalogo.Api.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProdutoController : ControllerBase
@@ -26,6 +28,7 @@ namespace PrismaCatalogo.Api.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProdutoResponseDTO>>> Get()
         {
@@ -40,6 +43,7 @@ namespace PrismaCatalogo.Api.Controllers
             return Ok(produtoResponse);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}", Name = "ObterProduto")]
         public async Task<ActionResult<IEnumerable<ProdutoResponseDTO>>> Get(int id)
         {
@@ -49,6 +53,7 @@ namespace PrismaCatalogo.Api.Controllers
             return Ok(produtoResponse);
         }
 
+        [AllowAnonymous]
         [HttpGet("GetByName/{nome}", Name = "ObterPorNomeProduto")]
         public async Task<ActionResult<IEnumerable<ProdutoResponseDTO>>> GetByName(string nome)
         {
