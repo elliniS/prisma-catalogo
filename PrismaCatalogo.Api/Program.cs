@@ -62,9 +62,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<ProdutoFilhoValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UsuarioValidator>();
 
 
-builder.Services.AddScoped<ITamanhoRepository, TamanhoRepository>();
-builder.Services.AddScoped<ICorRepository, CorRepository>();
-builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>(); 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

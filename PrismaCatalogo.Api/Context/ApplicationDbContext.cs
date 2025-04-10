@@ -99,6 +99,18 @@ namespace PrismaCatalogo.Api.Context
                 u.Property(t => t.Nome).IsRequired(true);
                 u.Property(t => t.Senha).IsRequired(true);
             });
+
+            modelBuilder.Entity<RefreshToken>(r =>
+            {
+                r.HasKey(r => r.Id);
+            });
+
+            modelBuilder.Entity<RefreshToken>(r =>
+            {
+                r.HasOne(r => r.Usuario)
+                .WithOne()
+                .HasForeignKey<RefreshToken>(u => u.UsuarioId);
+            });
         }
 
         public DbSet<Tamanho> Tamanhos { get; set; }
@@ -109,5 +121,6 @@ namespace PrismaCatalogo.Api.Context
         public DbSet<ProdutoFoto> ProdutosFoto { get; set; }
         public DbSet<ProdutoFilhoFoto> produtoFilhoFotos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }

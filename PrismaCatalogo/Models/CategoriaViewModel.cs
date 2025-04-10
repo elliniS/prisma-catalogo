@@ -12,5 +12,9 @@ namespace PrismaCatalogo.Web.Models
         public int? IdPai { get; set; }
         [Display(Name = "Categorias filhas")]
         public ICollection<CategoriaViewModel>? CategoriasFilhas { get; set; }
+
+        public ICollection<ProdutoViewModel>? Produtos { get; set; }
+
+
     }
 }

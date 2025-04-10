@@ -161,7 +161,7 @@ namespace PrismaCatalogo.Api.Controllers
         private async void GerenciarFotos(IEnumerable<ProdutoFotoRequestDTO> fotos, int produtoId)
         {
 
-            var produtoFototyyy = await _unitOfWork.ProdutoFotoRepository.GetAsync(f => f.Id == 1);
+            //var produtoFototyyy = await _unitOfWork.ProdutoFotoRepository.GetAsync(f => f.Id == 1);
 
 
             foreach (var fotoRequest in fotos)

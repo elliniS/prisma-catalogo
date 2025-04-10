@@ -12,7 +12,8 @@ namespace PrismaCatalogo.Api.Repositories
         private IProdutoFilhoRepository? _produtoFilho;
         private IProdutoFotoRepository? _produtoFoto;
         private IProdutoFilhoFotoRepository _produtoFilhoFoto;
-        private IUsuarioRepository _usuarioRepository; 
+        private IUsuarioRepository _usuarioRepository;
+        private IRefreshTokenRepository _refreshTokenRepository;
 
         public ApplicationDbContext _context;
         
@@ -88,6 +89,14 @@ namespace PrismaCatalogo.Api.Repositories
             get
             {
                 return _usuarioRepository = _usuarioRepository ?? new UsuarioRepository(_context);
+            }
+        }
+
+        public IRefreshTokenRepository RefreshTokenRepository
+        {
+            get
+            {
+                return _refreshTokenRepository = _refreshTokenRepository ?? new RefreshTokenRepository(_context);
             }
         }
 

@@ -17,14 +17,12 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
     public class FuncionarioProdutosController : Controller
     {
         private IProdutoService _produtoService;
-        private ICorService _corService;
-        private ITamanhoService _tamanhoService;
+        private ICategoriaService _categoriaService;
 
-        public FuncionarioProdutosController(IProdutoService produto, ICorService cor, ITamanhoService tamanho)
+        public FuncionarioProdutosController(IProdutoService produto, ICategoriaService categoria)
         {
             _produtoService = produto;
-            _corService = cor;
-            _tamanhoService = tamanho;
+            _categoriaService = categoria;
         }
 
 
@@ -70,8 +68,12 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
 
         // GET: Funcionario/FuncionarioProdutos/Create
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var categoriaList = await _categoriaService.GetAll();
+
+            ViewBag.ShowCategoria = new SelectList(categoriaList, "Id", "Nome");
+
             return View();
         }
 
@@ -109,6 +111,10 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         // GET: Funcionario/FuncionarioProdutos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var categoriaList = await _categoriaService.GetAll();
+
+            ViewBag.ShowCategoria = new SelectList(categoriaList, "Id", "Nome");
+
             try {
                 var produto = await _produtoService.FindById(Convert.ToInt32(id));
 
@@ -130,7 +136,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,Observacao,Ativo,Fotos")] ProdutoViewModel produtoViewModel, IEnumerable<IFormFile>? files)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,Observacao,Ativo,Fotos,CategoriaId")] ProdutoViewModel produtoViewModel, IEnumerable<IFormFile>? files)
         {
             var produtos = (await _produtoService.GetAll()).Where(t => t.Id != id);
             ProdutoValidator validations = new ProdutoValidator(produtos);

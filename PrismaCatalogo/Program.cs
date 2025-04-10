@@ -2,6 +2,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using PrismaCatalogo.Validations;
+using PrismaCatalogo.Web.Handlers;
 using PrismaCatalogo.Web.Services;
 using PrismaCatalogo.Web.Services.Interfaces;
 
@@ -14,8 +15,12 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddValidatorsFromAssemblyContaining<TamanhoValidator>();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<AuthTokenHandler>();
 
-builder.Services.AddHttpClient("Api", c => c.BaseAddress = new Uri(builder.Configuration["ServiceUri:Api"]));
+builder.Services.AddHttpClient("Api", c => c.BaseAddress = new Uri(
+    builder.Configuration["ServiceUri:Api"])
+).AddHttpMessageHandler<AuthTokenHandler>();
 
 builder.Services.AddScoped<ITamanhoService, TamanhoService>();
 builder.Services.AddScoped<ICorService, CorService>();

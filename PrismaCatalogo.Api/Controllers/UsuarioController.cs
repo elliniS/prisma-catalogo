@@ -16,7 +16,7 @@ using PrismaCatalogo.Api.Validations;
 
 namespace PrismaCatalogo.Api.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
@@ -127,10 +127,43 @@ namespace PrismaCatalogo.Api.Controllers
             if (usuario == null)
                 throw new APIException("Usuario ou senha invalidos", StatusCodes.Status404NotFound);
 
+            var nRefheshToken = _tokenService.GenereteRefreshToken();
             var usuarioResponse = _mapper.Map<UsuarioTokenResponseDTO>(usuario);
             usuarioResponse.Token = _tokenService.GenereteToken(usuario);
+            usuarioResponse.RefreshToken = nRefheshToken;
+            await _tokenService.DeleteRefreshToken(usuario.Id);
+            await _tokenService.SaveRefreshToken(usuario.Id, nRefheshToken);
 
             return usuarioResponse;
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("Refresh")]
+        public async Task<UsuarioTokenResponseDTO> Refresh(string token, string refreToken)
+        {
+            var principal = _tokenService.GetPrincipalFromExpiredToken(token);
+            var nome = principal.Identity.Name;
+            var usua = await _unitOfWork.UsuarioRepository.GetAsync(u => u.NomeUsuario == nome);
+
+            var refreshToken = await _tokenService.GetRefreshToken(usua.Id);
+
+            if (refreshToken != refreToken) {
+                throw new APIException("RefreshToken invalido!", StatusCodes.Status403Forbidden);
+            }
+
+            var nToken = _tokenService.GenereteToken(principal.Claims);
+            var nRefreshToken = _tokenService.GenereteRefreshToken();
+
+            await _tokenService.DeleteRefreshToken(usua.Id);
+            await _tokenService.SaveRefreshToken(usua.Id, nRefreshToken);
+
+            var usuarioResponse = _mapper.Map<UsuarioTokenResponseDTO>(usua);
+            usuarioResponse.Token = nToken;
+            usuarioResponse.RefreshToken = nRefreshToken;
+
+            return usuarioResponse;
+
         }
 
         private void validaStruturaDados(IEnumerable<Usuario> usuarios, Usuario usuario)

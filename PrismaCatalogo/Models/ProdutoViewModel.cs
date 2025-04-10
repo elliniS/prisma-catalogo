@@ -10,6 +10,10 @@ namespace PrismaCatalogo.Web.Models
         public string? Observacao { get; set; }  
         public bool Ativo { get; set; }
         public FotoViewModel? FotoCapa { get; set; }
+        
+        [Display(Name = "Categoria")]
+        public int? CategoriaId { get; set; }
+        public CategoriaViewModel? Categoria { get; set; }
 
         [Display(Name = "Produtos filhos")]
         public IEnumerable<ProdutoFilhoViewModel>? ProdutosFilhos { get; set; }

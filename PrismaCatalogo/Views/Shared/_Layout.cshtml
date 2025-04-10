@@ -121,6 +121,15 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (ViewData["mensagemError"] != null)
+            {
+                <div style="margin: 3px;" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @ViewData["mensagemError"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+
             @RenderBody()
         </main>
     </div>

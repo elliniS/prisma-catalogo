@@ -12,6 +12,9 @@ namespace PrismaCatalogo.Api.Models
         
         public ICollection<ProdutoFoto>? Fotos { get; set; }
 
+        public int? CategoriaId { get; set; }
+        public Categoria? Categoria { get; set; }
+
         public ICollection<ProdutoFilho>? ProdutosFilhos { get; set; }
     }
 }

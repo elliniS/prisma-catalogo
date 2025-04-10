@@ -10,6 +10,7 @@
         IProdutoFotoRepository ProdutoFotoRepository { get; }
         IProdutoFilhoFotoRepository produtoFilhoFotoRepository { get; }
         IUsuarioRepository UsuarioRepository { get; }
+        IRefreshTokenRepository RefreshTokenRepository { get; }
         Task CommitAsync();
     }
 }

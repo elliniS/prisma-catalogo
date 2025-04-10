@@ -1,4 +1,5 @@
-﻿using PrismaCatalogo.Api.DTOs.CorDTO;
+﻿using PrismaCatalogo.Api.DTOs.CategoriaDTO;
+using PrismaCatalogo.Api.DTOs.CorDTO;
 using PrismaCatalogo.Api.DTOs.ProdutoFilhoDTO;
 using PrismaCatalogo.Api.Models;
 
@@ -11,6 +12,9 @@ namespace PrismaCatalogo.Api.DTOs.ProdutoDTO
         public string? Descricao { get; set; }
         public string? Observacao { get; set; }
         public bool Ativo { get; set; }
+
+        public int CategoriaId { get; set; }
+        public CategoriaResponseDTO Categoria { get; set; }
 
         public IEnumerable<ProdutoFilhoResponseDTO> ProdutosFilhos { get; set; }
         public IEnumerable<ProdutoFotoResponseDTO> Fotos { get; set; }

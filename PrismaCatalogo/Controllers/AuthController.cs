@@ -66,6 +66,8 @@ public class AuthController : Controller
 
         if (usuario == null)
         {
+            ViewData["mensagemError"] = "Erro ao realizar Login!";
+
             return View();
         }
 
@@ -74,7 +76,8 @@ public class AuthController : Controller
         [
             new Claim(ClaimTypes.Name, usuario.NomeUsuario),
             new Claim(ClaimTypes.Role, usuario.UsuarioTipo.ToString()),
-            new Claim("Token", usuario.Token)   
+            new Claim("Token", usuario.Token),
+            new Claim("RefreshToken", usuario.RefreshToken)
         ];
         var authScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 

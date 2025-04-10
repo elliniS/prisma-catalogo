@@ -12,6 +12,7 @@ namespace PrismaCatalogo.Web.Models
         public string NomeUsuario { get; set; }
         public string Senha { get; set; }
         public string Token { get; set; }
+        public string RefreshToken {  get; set; }
         public bool FgLembra { get; set; }
         public EnumUsuarioTipo UsuarioTipo { get; set; }
     }
