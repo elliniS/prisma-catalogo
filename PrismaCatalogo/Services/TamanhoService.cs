@@ -99,7 +99,7 @@ namespace PrismaCatalogo.Web.Services
             {
                 var erros = await JsonSerializer.DeserializeAsync<ErrorViewModel>(apiResponse, _options);
 
-                throw new Exception(erros.Message);
+                throw new Exception(erros.Errors != null && erros.Errors.Count() > 0 ? string.Join("\n", erros.Errors) : erros.Message);
             }
             return obj;
         }
