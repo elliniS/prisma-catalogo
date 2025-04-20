@@ -24,46 +24,23 @@ namespace PrismaCatalogo.Web.Services
             };
         }
 
-
         public async Task<IEnumerable<CategoriaViewModel>> GetAll()
         {
-            IEnumerable<CategoriaViewModel> categorias = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    categorias = await JsonSerializer.DeserializeAsync<IEnumerable<CategoriaViewModel>>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return categorias;
+                return await CapituraRetorno<IEnumerable<CategoriaViewModel>>(response);
             }
         }
 
         public async Task<CategoriaViewModel> FindById(int id)
         {
-            CategoriaViewModel categoria = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint + id))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    categoria = await JsonSerializer.DeserializeAsync<CategoriaViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return categoria;
+                return await CapituraRetorno<CategoriaViewModel>(response);
             }
         }
 
@@ -75,37 +52,17 @@ namespace PrismaCatalogo.Web.Services
 
             using (var response = await client.GetAsync(apiEndpoint + name))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    categoria = await JsonSerializer.DeserializeAsync<CategoriaViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return categoria;
+                return await CapituraRetorno<CategoriaViewModel>(response);
             }
         }
 
         public async Task<CategoriaViewModel> Create(CategoriaViewModel categoriaViewModel)
         {
-            CategoriaViewModel categoria = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.PostAsJsonAsync(apiEndpoint, categoriaViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    categoria = await JsonSerializer.DeserializeAsync<CategoriaViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return categoria;
+                return await CapituraRetorno<CategoriaViewModel>(response);
             }
         }
 
@@ -117,16 +74,7 @@ namespace PrismaCatalogo.Web.Services
 
             using (var response = await client.PutAsJsonAsync(apiEndpoint + id, categoriaViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    categoria = await JsonSerializer.DeserializeAsync<CategoriaViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return categoria;
+                return await CapituraRetorno<CategoriaViewModel>(response);
             }
         }
 
@@ -138,17 +86,27 @@ namespace PrismaCatalogo.Web.Services
 
             using (var response = await client.DeleteAsync(apiEndpoint + id))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    categoria = await JsonSerializer.DeserializeAsync<CategoriaViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return categoria;
+                return await CapituraRetorno<CategoriaViewModel>(response);
             }
+        }
+
+        private async Task<T> CapituraRetorno<T>(HttpResponseMessage response)
+        {
+            T obj;
+
+            var apiResponse = await response.Content.ReadAsStreamAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                obj = await JsonSerializer.DeserializeAsync<T>(apiResponse, _options);
+            }
+            else
+            {
+                var erros = await JsonSerializer.DeserializeAsync<ErrorViewModel>(apiResponse, _options);
+
+                throw new Exception(erros.Message);
+            }
+            return obj;
         }
     }
 }

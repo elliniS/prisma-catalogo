@@ -3,6 +3,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PrismaCatalogo.Api.DTOs.CategoriaDTO;
 using PrismaCatalogo.Api.Exceptions;
@@ -32,7 +33,10 @@ namespace PrismaCatalogo.Api.Controllers
         //[Authorize(Roles = "Funcionario,Cliente")]
         public async Task<ActionResult<IEnumerable<CategoriaResponseDTO>>> Get()
         {
-            var categorias = await _unitOfWork.CategoriaRepository.GetAllAsync();
+            var categorias = await _unitOfWork.CategoriaRepository.GetAllAsync(c => new { c.Id, c.IdPai, c.Nome }); 
+
+
+            categorias.Select(c => c.Id);
 
             var categoriaResponse = _mapper.Map<IEnumerable<CategoriaResponseDTO>>(categorias);
             return Ok(categoriaResponse);
@@ -50,7 +54,7 @@ namespace PrismaCatalogo.Api.Controllers
         [HttpGet("GetByName/{nome}", Name = "ObterPorNomeCategoria")]
         public async Task<ActionResult<IEnumerable<CategoriaResponseDTO>>> GetByName(string nome)
         {
-            var categoria = await _unitOfWork.CategoriaRepository.GetAsync(t => t.Nome == nome);
+            var categoria = await _unitOfWork.CategoriaRepository.GetListAsync(t => t.Nome == nome);
 
             var categoriaResponse = _mapper.Map<IEnumerable<CategoriaResponseDTO>>(categoria);
             return Ok(categoriaResponse);
@@ -82,6 +86,8 @@ namespace PrismaCatalogo.Api.Controllers
 
             var categorias = (await _unitOfWork.CategoriaRepository.GetCategoriasMesmoNivel(categoria.IdPai)).Where(t => t.Id != id);
             validaStruturaDados(categorias, categoria);
+
+           
 
             categoria.Id = id;
             var categoriaUp = _unitOfWork.CategoriaRepository.Update(categoria);
@@ -131,14 +137,14 @@ namespace PrismaCatalogo.Api.Controllers
                 ModelState.Clear();
                 result.AddToModelState(ModelState);
 
-                throw new APIException("Dados inconssistentes", StatusCodes.Status422UnprocessableEntity);
+                throw new APIException(result.Errors.FirstOrDefault().ErrorMessage, StatusCodes.Status422UnprocessableEntity);
             }
         }
 
         [HttpDelete("{id:int}")]
         private  bool CategoriaExists(int id)
         {
-            return _unitOfWork.CategoriaRepository.GetAllAsync().Result.Where(t => t.Id == id).FirstOrDefault() != null;
+            return _unitOfWork.CategoriaRepository.GetAllAsync().Result.FirstOrDefault(t => t.Id == id) != null;
         }
             
     }

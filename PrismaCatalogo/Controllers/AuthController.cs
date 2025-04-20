@@ -6,6 +6,7 @@ using PrismaCatalogo.Web.Models;
 using PrismaCatalogo.Web.Services.Interfaces;
 using System;
 using PrismaCatalogo.Validations;
+using NuGet.Packaging.Licenses;
 
 namespace AuthFacil.Mvc.Controllers;
 
@@ -32,7 +33,7 @@ public class AuthController : Controller
     public async Task<IActionResult> Create([Bind("Id,Nome,NomeUsuario,Senha")] UsuarioViewModel usuario)
     {
         usuario.UsuarioTipo = PrismaCatalogo.Enuns.EnumUsuarioTipo.Cliente;
-        UsuarioValidator validations = new UsuarioValidator(await _usuarioService.GetAll());
+        UsuarioValidator validations = new UsuarioValidator();
         var resul = validations.Validate(usuario);
 
         if (resul.IsValid)
@@ -44,9 +45,9 @@ public class AuthController : Controller
                 return RedirectToAction(nameof(Login));
 
             }
-            catch
+            catch(Exception e )
             {
-                ViewData["mensagemError"] = "Erro ao cadastrar!";
+                ViewData["mensagemError"] = e.Message;
             }
         }
 
@@ -62,41 +63,50 @@ public class AuthController : Controller
     [HttpPost]
     public async Task<IActionResult> Login([Bind("NomeUsuario,Senha,FgLembra,ReturnUrl")] UsuarioLoginViewModel logInModel)
     {
-        var usuario = await _usuarioService.Login(logInModel);
 
-        if (usuario == null)
+        try
         {
-            ViewData["mensagemError"] = "Erro ao realizar Login!";
+            var usuario = await _usuarioService.Login(logInModel);
 
-            return View();
-        }
+            //if (usuario == null)
+            //{
+            //    ViewData["mensagemError"] = "Erro ao realizar Login!";
 
+            //    return View();
+            //}
 
-        List<Claim> claims =
-        [
-            new Claim(ClaimTypes.Name, usuario.NomeUsuario),
+            List<Claim> claims =
+            [
+                new Claim(ClaimTypes.Name, usuario.NomeUsuario),
             new Claim(ClaimTypes.Role, usuario.UsuarioTipo.ToString()),
             new Claim("Token", usuario.Token),
             new Claim("RefreshToken", usuario.RefreshToken)
-        ];
-        var authScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            ];
+            var authScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
-        var identity = new ClaimsIdentity(claims, authScheme);
+            var identity = new ClaimsIdentity(claims, authScheme);
 
-        var principal = new ClaimsPrincipal(identity);
+            var principal = new ClaimsPrincipal(identity);
 
-        await HttpContext.SignInAsync(authScheme, principal,
-            new AuthenticationProperties
+            await HttpContext.SignInAsync(authScheme, principal,
+                new AuthenticationProperties
+                {
+                    IsPersistent = true //logInModel.FgLembra
+                });
+
+            if (!String.IsNullOrWhiteSpace(logInModel.ReturnUrl))
             {
-                IsPersistent = true //logInModel.FgLembra
-            });
+                return Redirect(logInModel.ReturnUrl);
+            }
 
-        if (!String.IsNullOrWhiteSpace(logInModel.ReturnUrl))
-        {
-            return Redirect(logInModel.ReturnUrl);
+            return RedirectToAction("Index", "Home");
         }
+        catch(Exception e)
+        {
+            ViewData["mensagemError"] = e.Message;
 
-        return RedirectToAction("Index","Home");
+            return View();
+        }
     }
 
 

@@ -37,10 +37,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 ViewData["mensagemError"] = "Erro ao buscar produto!";
             }
 
-            foreach(var produto in produtos)
-            {
-                produto.FotoCapa = produto.Fotos.OrderBy(f => f.Id).FirstOrDefault();
-            }
+            ViewData["mensagemError"] = TempData["mensagemError"];
 
             return View(produtos);
         }
@@ -56,7 +53,6 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 {
                     throw new Exception();
                 }
-
                 return View(produto);
             }
             catch
@@ -82,9 +78,9 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Descricao,Observacao,Ativo")] ProdutoViewModel produto, IEnumerable<IFormFile>? files)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Descricao,Observacao,Ativo,CategoriaId")] ProdutoViewModel produto, IEnumerable<IFormFile>? files)
         {
-            ProdutoValidator validations = new ProdutoValidator(await _produtoService.GetAll());
+            ProdutoValidator validations = new ProdutoValidator();
             var resul = validations.Validate(produto);
 
             if (resul.IsValid)
@@ -96,9 +92,9 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                     var result = await _produtoService.Create(produto);
                     return RedirectToAction(nameof(Index));
                 }
-                catch
+                catch(Exception e)
                 {
-                    ViewData["mensagemError"] = "Erro ao cadastrar!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
@@ -138,8 +134,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,Observacao,Ativo,Fotos,CategoriaId")] ProdutoViewModel produtoViewModel, IEnumerable<IFormFile>? files)
         {
-            var produtos = (await _produtoService.GetAll()).Where(t => t.Id != id);
-            ProdutoValidator validations = new ProdutoValidator(produtos);
+            ProdutoValidator validations = new ProdutoValidator();
             var resul = validations.Validate(produtoViewModel);
 
             if (resul.IsValid)
@@ -154,9 +149,9 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                     var re = await _produtoService.Update(id, produtoViewModel);
                     return RedirectToAction(nameof(Index));
                 }
-                catch
+                catch(Exception e)
                 {
-                    ViewData["mensagemError"] = "Erro ao atualizar!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
@@ -201,7 +196,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 }
                 catch
                 {
-                    ViewData["mensagemError"] = "Erro ao deletar!";
+                    TempData["mensagemError"] = "Erro ao deletar!";
                 }
             }
 

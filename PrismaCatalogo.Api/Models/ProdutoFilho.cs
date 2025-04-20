@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PrismaCatalogo.Api.Models
 {
@@ -24,5 +25,9 @@ namespace PrismaCatalogo.Api.Models
         public Tamanho? Tamanho { get; set; }
 
         public ICollection<ProdutoFilhoFoto>? Fotos { get; set; }
+
+
+        [NotMapped]
+        public ProdutoFoto? Fotocapa { get; set; }
     }
 }

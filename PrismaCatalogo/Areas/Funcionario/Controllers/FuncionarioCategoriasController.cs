@@ -35,6 +35,8 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 ViewData["mensagemError"] = "Erro ao buscar categoria!";
             }
 
+            ViewData["mensagemError"] = TempData["mensagemError"];
+
             return View(categorias);
         }
 
@@ -73,25 +75,19 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,IdPai,Nome")] CategoriaViewModel categoriaViewModel)
         {
-            List<CategoriaViewModel> categorias = new List<CategoriaViewModel>();
-
-            if (categoriaViewModel.IdPai == null)
-            {
-                categorias = (await _categoriasService.GetAll()).Where(c => c.IdPai == null).ToList();
-            }
-            else
-            {
-                categorias = (await _categoriasService.GetAll()).Where(c => c.IdPai == categoriaViewModel.IdPai).ToList();   
-            }
-
-            CategoriaValidator validationRules = new CategoriaValidator(categorias);
+            CategoriaValidator validationRules = new CategoriaValidator();
 
             var result = validationRules.Validate(categoriaViewModel);
 
             if (result.IsValid)
             {
-                var val = await _categoriasService.Create(categoriaViewModel);
-                return RedirectToAction(nameof(Index));
+                try{
+                    var val = await _categoriasService.Create(categoriaViewModel);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch(Exception e) {
+                    ViewData["mensagemError"] = e.Message;
+                }
             }
 
             ModelState.Clear();
@@ -113,7 +109,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                     throw new Exception();
                 }
 
-                ViewData["IdPai"] = new SelectList(await _categoriasService.GetAll(), "Id", "Id", categoria.IdPai);
+                //ViewData["IdPai"] = new SelectList(await _categoriasService.GetAll(), "Id", "Id", categoria.IdPai);
                 return View(categoria);
             }
             catch
@@ -130,19 +126,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,IdPai,Nome")] CategoriaViewModel categoriaViewModel)
         {
-
-            List<CategoriaViewModel> categorias = new List<CategoriaViewModel>();
-
-            if (categoriaViewModel.IdPai == null) {
-                categorias = (await _categoriasService.GetAll()).Where(c => c.IdPai == null && c.Id != categoriaViewModel.Id).ToList();
-            }
-            else
-            {
-                categorias = categorias.Where(c => c.Id == categoriaViewModel.IdPai && c.Id != categoriaViewModel.Id).FirstOrDefault().CategoriasFilhas.ToList();
-            }
-
-            CategoriaValidator validationRules = new CategoriaValidator(categorias);
-
+            CategoriaValidator validationRules = new CategoriaValidator();
             var result = validationRules.Validate(categoriaViewModel);
 
             if (result.IsValid)
@@ -152,16 +136,16 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                     var re = await _categoriasService.Update(id, categoriaViewModel);
                     return RedirectToAction(nameof(Index));
                 }
-                catch 
+                catch(Exception e) 
                 {
-                    ViewData["mensagemError"] = "Erro ao atualizar!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
             ModelState.Clear();
             result.AddToModelState(ModelState);
 
-            ViewData["IdPai"] = new SelectList(await _categoriasService.GetAll(), "Id", "Id", categoriaViewModel.IdPai);
+            //ViewData["IdPai"] = new SelectList(await _categoriasService.GetAll(), "Id", "Id", categoriaViewModel.IdPai);
             return View(categoriaViewModel);
         }
 
@@ -190,28 +174,12 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var categoria = await _categoriasService.FindById(id);
-
-            if (categoria != null)
+            try{
+                var val = await _categoriasService.Delete(id);
+            }
+            catch(Exception e)
             {
-
-                CategoriaValidator validationRules = new CategoriaValidator();
-                var result = validationRules.Validate(categoria);
-
-                if (result.IsValid)
-                {
-                    try{
-                        var val = await _categoriasService.Delete(id);
-                    }
-                    catch
-                    {
-                        ViewData["mensagemError"] = "Erro ao deletar!";
-                    }
-                }
-                
-                ModelState.Clear();
-                result.AddToModelState(ModelState);
-
+                TempData["mensagemError"] = e.Message;
             }
 
             return RedirectToAction(nameof(Index));

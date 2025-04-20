@@ -32,7 +32,7 @@ namespace PrismaCatalogo.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProdutoFilhoResponseDTO>>> Get()
         {
-            var produtosFilhos = await _unitOfWork.ProdutoFilhoRepository.GetAllAsync();
+            var produtosFilhos = await _unitOfWork.ProdutoFilhoRepository.GetAllAsync(pf => new { pf.Id, pf, pf.Nome, pf.Preco, pf.QuantEstoque, pf.Ativo, Fotocapa = pf.Fotos.FirstOrDefault()});
             
             if (produtosFilhos == null)
             {

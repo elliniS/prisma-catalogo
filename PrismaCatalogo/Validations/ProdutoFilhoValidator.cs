@@ -8,13 +8,11 @@ namespace PrismaCatalogo.Validations
 {
     public class ProdutoFilhoValidator : AbstractValidator<ProdutoFilhoViewModel>
     {
-        public ProdutoFilhoValidator(IEnumerable<ProdutoFilhoViewModel> produtoFilho)
+        public ProdutoFilhoValidator()
         {
             RuleFor(x => x.Nome)
                 .NotEmpty()
-                .WithMessage("Informe algum nome para o produto!")
-                .IsUnique(produtoFilho)
-                .WithMessage("Outro produto já esta usando este nome!");
+                .WithMessage("Informe algum nome para o produto!");
         }
     }
 }

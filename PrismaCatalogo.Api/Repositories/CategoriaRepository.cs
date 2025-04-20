@@ -2,6 +2,8 @@
 using PrismaCatalogo.Api.Context;
 using PrismaCatalogo.Api.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using System.Linq;
 
 namespace PrismaCatalogo.Api.Repositories
 {
@@ -20,19 +22,28 @@ namespace PrismaCatalogo.Api.Repositories
             .ToListAsync();
         }
 
+        //public async  Task<Categoria?> GetAsync(Expression<Func<Categoria, bool>> predicate)
+        //{
+        //    return await _context.Set<Categoria>().AsNoTracking()
+        //    .Include(c => c.CategoriaPai)
+        //    .Include(c => c.CategoriasFilhas)
+        //    .Where(predicate)
+        //    .FirstOrDefaultAsync();
+        //}
+
         public async Task<IEnumerable<Categoria>> GetCategoriasMesmoNivel(int? idPai)
         {
             IEnumerable<Categoria> categorias = null;
 
             if (idPai != null)
             {
-                var categoria = await _context.Set<Categoria>().AsNoTracking()
+                 categorias = await _context.Set<Categoria>().AsNoTracking()
                 .Include(c => c.CategoriaPai)
                 .Include(c => c.CategoriasFilhas)
                 .Where(c => c.IdPai == idPai)
-                .FirstOrDefaultAsync();
+                .ToListAsync();
 
-                categorias = categoria != null ? categoria.CategoriasFilhas : new List<Categoria>();
+                //categorias =categoria != null ? categoria.CategoriasFilhas : new List<Categoria>();
             }
             else
             {

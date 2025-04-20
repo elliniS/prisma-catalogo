@@ -30,6 +30,8 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 ViewData["mensagemError"] = "Erro ao buscar usuario!";
             }
 
+            ViewData["mensagemError"] = TempData["mensagemError"];
+
             return View(usuarios);
         }
 
@@ -67,8 +69,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,NomeUsuario,Senha")] UsuarioViewModel usuario)
         {
-            usuario.UsuarioTipo = Enuns.EnumUsuarioTipo.Funcionario;
-            UsuarioValidator validations = new UsuarioValidator(await _usuarioService.GetAll());
+            UsuarioValidator validations = new UsuarioValidator();
             var resul = validations.Validate(usuario);
 
             if (resul.IsValid)
@@ -78,9 +79,9 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                     var result = await _usuarioService.Create(usuario);
                     return RedirectToAction(nameof(Index));
                 }
-                catch
+                catch(Exception e)
                 {
-                    ViewData["mensagemError"] = "Erro ao cadastrar!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
@@ -102,7 +103,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 }
                 return View(usuario);
             }
-             catch
+            catch
             {
                 ViewData["mensagemError"] = "Erro ao acessar tela de edição!";
                 return RedirectToAction(nameof(Index));
@@ -116,8 +117,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,NomeUsuario,Senha")] UsuarioViewModel usuarioViewModel)
         {
-            var usuarios = (await _usuarioService.GetAll()).Where(t => t.Id != id);
-            UsuarioValidator validations = new UsuarioValidator(usuarios);
+            UsuarioValidator validations = new UsuarioValidator();
             var resul = validations.Validate(usuarioViewModel);
 
             if (resul.IsValid)
@@ -127,9 +127,9 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                     var re = await _usuarioService.Update(id, usuarioViewModel);
                     return RedirectToAction(nameof(Index));
                 }
-                catch
+                catch(Exception e)
                 {
-                    ViewData["mensagemError"] = "Erro ao atualizar!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
@@ -174,7 +174,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 }
                 catch
                 {
-                    ViewData["mensagemError"] = "Erro ao deletar!";
+                    TempData["mensagemError"] = "Erro ao deletar!";
                 }
             }
 

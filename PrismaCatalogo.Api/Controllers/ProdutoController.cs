@@ -32,7 +32,7 @@ namespace PrismaCatalogo.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProdutoResponseDTO>>> Get()
         {
-            var produtos = await _unitOfWork.ProdutoRepository.GetAllAsync();
+            var produtos = await _unitOfWork.ProdutoRepository.GetAllAsync(p => new { p.Id, p.Nome, p.Descricao, p.Ativo, Fotocapa = p.Fotos.FirstOrDefault(), Preco = p.ProdutosFilhos.Min(pf => pf.Preco)});
             
             if (produtos == null)
             {
@@ -68,7 +68,7 @@ namespace PrismaCatalogo.Api.Controllers
         {
             Produto produto = _mapper.Map<Produto>(produtoRequest);
 
-            var aa = await _unitOfWork.ProdutoRepository.GetAllAsync();
+            //var aa = await _unitOfWork.ProdutoRepository.GetAllAsync();
 
             validaStruturaDados((await _unitOfWork.ProdutoRepository.GetAllAsync()), produto);
 

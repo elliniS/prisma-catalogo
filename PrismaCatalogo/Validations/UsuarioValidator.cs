@@ -5,7 +5,7 @@ namespace PrismaCatalogo.Validations
 {
     public class UsuarioValidator : AbstractValidator<UsuarioViewModel>
     {
-        public UsuarioValidator(IEnumerable<UsuarioViewModel> usuarios)
+        public UsuarioValidator()
         {
             RuleFor(x => x.Nome)
                 .NotEmpty()
@@ -13,9 +13,7 @@ namespace PrismaCatalogo.Validations
 
             RuleFor(x => x.NomeUsuario)
                 .NotEmpty()
-                .WithMessage("Informe um nome para o usuario!")
-                .IsUnique(usuarios)
-                .WithMessage("Outro usuario já esta usando este nome!!");
+                .WithMessage("Informe um nome para o usuario!");
 
             RuleFor(x => x.Senha)
                 .NotEmpty()

@@ -125,7 +125,7 @@ namespace PrismaCatalogo.Api.Controllers
             var usuario = await _unitOfWork.UsuarioRepository.GetAsync(u => u.NomeUsuario == usuarioRequest.NomeUsuario && u.Senha == usuarioRequest.Senha);
 
             if (usuario == null)
-                throw new APIException("Usuario ou senha invalidos", StatusCodes.Status404NotFound);
+                throw new APIException("Usuario ou senha invalido!", StatusCodes.Status404NotFound);
 
             var nRefheshToken = _tokenService.GenereteRefreshToken();
             var usuarioResponse = _mapper.Map<UsuarioTokenResponseDTO>(usuario);

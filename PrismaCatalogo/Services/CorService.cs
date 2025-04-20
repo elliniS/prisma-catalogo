@@ -24,106 +24,51 @@ namespace PrismaCatalogo.Web.Services
 
         public async Task<IEnumerable<CorViewModel>> GetAll()
         {
-            IEnumerable<CorViewModel> cors = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    cors = await JsonSerializer.DeserializeAsync<IEnumerable<CorViewModel>>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return cors;
+                return await CapituraRetorno<IEnumerable<CorViewModel>>(response);
             }
         }
 
         public async Task<CorViewModel> FindById(int id)
         {
-            CorViewModel cor = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint + id))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    cor = await JsonSerializer.DeserializeAsync<CorViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return cor;
+                return await CapituraRetorno<CorViewModel>(response);
             }
         }
 
         public async Task<CorViewModel> FindByName(string name)
         {
-            CorViewModel cor = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint + name))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    cor = await JsonSerializer.DeserializeAsync<CorViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return cor;
+                return await CapituraRetorno<CorViewModel>(response);
             }
         }
 
         public async Task<CorViewModel> Create(CorViewModel corViewModel)
         {
-            CorViewModel cor = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.PostAsJsonAsync(apiEndpoint, corViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    cor = await JsonSerializer.DeserializeAsync<CorViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return cor;
+                return await CapituraRetorno<CorViewModel>(response);
             }
         }
 
         public async Task<CorViewModel> Update(int id, CorViewModel corViewModel)
         {
-            CorViewModel cor = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.PutAsJsonAsync(apiEndpoint + id, corViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    cor = await JsonSerializer.DeserializeAsync<CorViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return cor;
+                return await CapituraRetorno<CorViewModel>(response);
             }
         }
 
@@ -135,17 +80,27 @@ namespace PrismaCatalogo.Web.Services
 
             using (var response = await client.DeleteAsync(apiEndpoint + id))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    cor = await JsonSerializer.DeserializeAsync<CorViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return cor;
+                return await CapituraRetorno<CorViewModel>(response);
             }
+        }
+
+        private async Task<T> CapituraRetorno<T>(HttpResponseMessage response)
+        {
+            T obj;
+
+            var apiResponse = await response.Content.ReadAsStreamAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                obj = await JsonSerializer.DeserializeAsync<T>(apiResponse, _options);
+            }
+            else
+            {
+                var erros = await JsonSerializer.DeserializeAsync<ErrorViewModel>(apiResponse, _options);
+
+                throw new Exception(erros.Message);
+            }
+            return obj;
         }
     }
 }

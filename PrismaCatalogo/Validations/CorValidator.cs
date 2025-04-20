@@ -8,13 +8,11 @@ namespace PrismaCatalogo.Validations
 {
     public class CorValidator : AbstractValidator<CorViewModel>
     {
-        public CorValidator(IEnumerable<CorViewModel> cor)
+        public CorValidator()
         {
             RuleFor(x => x.Nome)
                 .NotEmpty()
-                .WithMessage("Informe algum nome para a cor!")
-                .IsUnique(cor)
-                .WithMessage("Outra cor já esta usando este nome!!");
+                .WithMessage("Informe algum nome para a cor!");
         }
     }
 }

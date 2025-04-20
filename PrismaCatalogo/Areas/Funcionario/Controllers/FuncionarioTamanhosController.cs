@@ -30,6 +30,8 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 ViewData["mensagemError"] = "Erro ao buscar tamanho!";
             }
 
+            ViewData["mensagemError"] = TempData["mensagemError"];
+
             return View(tamanhos);
         }
 
@@ -67,7 +69,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome")] TamanhoViewModel tamanho)
         {
-            TamanhoValidator validations = new TamanhoValidator(await _tamanhoService.GetAll());
+            TamanhoValidator validations = new TamanhoValidator();
             var resul = validations.Validate(tamanho);
 
             if (resul.IsValid)
@@ -77,9 +79,9 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                     var result = await _tamanhoService.Create(tamanho);
                     return RedirectToAction(nameof(Index));
                 }
-                catch
+                catch(Exception e)
                 {
-                    ViewData["mensagemError"] = "Erro ao cadastrar!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
@@ -115,8 +117,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome")] TamanhoViewModel tamanhoViewModel)
         {
-            var tamanhos = (await _tamanhoService.GetAll()).Where(t => t.Id != id);
-            TamanhoValidator validations = new TamanhoValidator(tamanhos);
+            TamanhoValidator validations = new TamanhoValidator();
             var resul = validations.Validate(tamanhoViewModel);
 
             if (resul.IsValid)
@@ -126,9 +127,9 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                     var re = await _tamanhoService.Update(id, tamanhoViewModel);
                     return RedirectToAction(nameof(Index));
                 }
-                catch
+                catch(Exception e)
                 {
-                    ViewData["mensagemError"] = "Erro ao atualizar!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
@@ -164,19 +165,15 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tamanho = await _tamanhoService.FindById(id);
-            if (tamanho != null)
+            try
             {
-                try
-                {
-                    var re = await _tamanhoService.Delete(id);
-                }
-                catch
-                {
-                    ViewData["mensagemError"] = "Erro ao deletar!";
-                }
+                var re = await _tamanhoService.Delete(id);
             }
-
+            catch(Exception e)
+            {
+                TempData["mensagemError"] = "Erro ao deletar!";
+            }
+          
             return RedirectToAction(nameof(Index));
         }
 

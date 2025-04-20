@@ -5,7 +5,7 @@
 
 
 <div class="row">
-    @foreach (var produto in Model)
+    @foreach (var produto in Model.Where(p => p.Ativo).ToList())
     {
         <partial name="_ProdutoResumo" for="@produto" />
     }

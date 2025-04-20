@@ -25,152 +25,92 @@ namespace PrismaCatalogo.Web.Services
 
         public async Task<IEnumerable<UsuarioViewModel>> GetAll()
         {
-            IEnumerable<UsuarioViewModel> usuarios = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    usuarios = await JsonSerializer.DeserializeAsync<IEnumerable<UsuarioViewModel>>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return usuarios;
+                return await CapituraRetorno<IEnumerable<UsuarioViewModel>>(response);
             }
         }
 
         public async Task<UsuarioViewModel> FindById(int id)
         {
-            UsuarioViewModel usuario = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using ( var response = await client.GetAsync(apiEndpoint + id))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    usuario = await JsonSerializer.DeserializeAsync<UsuarioViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return usuario;
+                 return await CapituraRetorno<UsuarioViewModel>(response);
             }
         }
 
         public async Task<UsuarioViewModel> FindByName(string name)
         {
-            UsuarioViewModel usuario = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint + name))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    usuario = await JsonSerializer.DeserializeAsync<UsuarioViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return usuario;
+                return await CapituraRetorno<UsuarioViewModel>(response);
             }
         }
 
         public async Task<UsuarioViewModel> Create(UsuarioViewModel usuarioViewModel)
         {
-            UsuarioViewModel usuario = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.PostAsJsonAsync(apiEndpoint, usuarioViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    usuario = await JsonSerializer.DeserializeAsync<UsuarioViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return usuario;
+                return await CapituraRetorno<UsuarioViewModel>(response);
             }
         }
 
         public async Task<UsuarioViewModel> Update(int id, UsuarioViewModel usuarioViewModel)
         {
-            UsuarioViewModel usuario = null;
-
-
             var client = _clientFactory.CreateClient("Api");
-
-            var json = JsonSerializer.Serialize(usuarioViewModel, _options);
 
             using (var response = await client.PutAsJsonAsync(apiEndpoint + id, usuarioViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    usuario = await JsonSerializer.DeserializeAsync<UsuarioViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return usuario;
+                return await CapituraRetorno<UsuarioViewModel>(response);
             }
         }
 
         public async Task<UsuarioViewModel> Delete(int id)
         {
-            UsuarioViewModel usuario = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.DeleteAsync(apiEndpoint + id))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    usuario = await JsonSerializer.DeserializeAsync<UsuarioViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return usuario;
+                return await CapituraRetorno<UsuarioViewModel>(response);
             }
         }
 
         public async Task<UsuarioViewModel> Login(UsuarioLoginViewModel usuarioViewModel)
         {
-            UsuarioViewModel usuario = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.PostAsJsonAsync(apiEndpoint + "Login", usuarioViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    usuario = await JsonSerializer.DeserializeAsync<UsuarioViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return usuario;
+                return await CapituraRetorno<UsuarioViewModel>(response);
             }
+        }
+
+
+        private async Task<T> CapituraRetorno<T>(HttpResponseMessage response)
+        {
+            T obj;
+
+            var apiResponse = await response.Content.ReadAsStreamAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                obj = await JsonSerializer.DeserializeAsync<T>(apiResponse, _options);
+            }
+            else
+            {
+                var erros = await JsonSerializer.DeserializeAsync<ErrorViewModel>(apiResponse, _options);
+
+                throw new Exception(erros.Message);
+            }
+            return obj;
         }
     }
 }

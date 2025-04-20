@@ -32,6 +32,8 @@ namespace PrismaCatalogo.Web.Web.Areas.Funcionario.Controllers
                 ViewData["mensagemError"] = "Erro ao buscar tamanho!";
             }
 
+            ViewData["mensagemError"] = TempData["mensagemError"];
+
             return View(cor);
         }
 
@@ -68,7 +70,7 @@ namespace PrismaCatalogo.Web.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,CodigoHexadecimal,FotoBytes")] CorViewModel cor, IFormFile? file)
         {
-            CorValidator validations = new CorValidator(await _corsService.GetAll());
+            CorValidator validations = new CorValidator();
             var result = validations.Validate(cor);
             
             if (result.IsValid)
@@ -79,9 +81,9 @@ namespace PrismaCatalogo.Web.Web.Areas.Funcionario.Controllers
                     var re = await _corsService.Create(cor);
                     return RedirectToAction(nameof(Index));
                 }
-                catch
+                catch(Exception e)
                 {
-                    ViewData["mensagemError"] = "Erro ao salvar cor!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
@@ -116,8 +118,7 @@ namespace PrismaCatalogo.Web.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,CodigoHexadecimal,FotoBytes")] CorViewModel cor, IFormFile? file)
         {
-            List<CorViewModel> cores = (await _corsService.GetAll()).Where(c => c.Id != cor.Id).ToList();
-            CorValidator validations = new CorValidator(cores);
+            CorValidator validations = new CorValidator();
             var result = validations.Validate(cor);
 
             if (result.IsValid)
@@ -132,9 +133,9 @@ namespace PrismaCatalogo.Web.Web.Areas.Funcionario.Controllers
                     var re = await _corsService.Update(id, cor);
                     return RedirectToAction(nameof(Index));
                 }
-                catch
+                catch(Exception e)
                 {
-                    ViewData["mensagemError"] = "Erro ao atualizar!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
@@ -170,19 +171,16 @@ namespace PrismaCatalogo.Web.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cor = await  _corsService.FindById(id);
-            if (cor != null)
+           
+            try
             {
-                try
-                {
-                    var re = await _corsService.Delete(id);
-                }
-                catch
-                {
-                    ViewData["mensagemError"] = "Erro ao deletar!";
-                }
+                var re = await _corsService.Delete(id);
             }
-
+            catch
+            {
+                TempData["mensagemError"] = "Erro ao deletar!";
+            }
+  
             return RedirectToAction(nameof(Index));
         }
 

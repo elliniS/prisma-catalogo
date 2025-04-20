@@ -25,131 +25,81 @@ namespace PrismaCatalogo.Web.Services
 
         public async Task<IEnumerable<ProdutoViewModel>> GetAll()
         {
-            IEnumerable<ProdutoViewModel> produtos = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    produtos = await JsonSerializer.DeserializeAsync<IEnumerable<ProdutoViewModel>>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return produtos;
+                return await CapituraRetorno<IEnumerable<ProdutoViewModel>>(response);
             }
         }
 
         public async Task<ProdutoViewModel> FindById(int id)
         {
-            ProdutoViewModel produto = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using ( var response = await client.GetAsync(apiEndpoint + id))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    produto = await JsonSerializer.DeserializeAsync<ProdutoViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return produto;
+                return await CapituraRetorno<ProdutoViewModel>(response);
             }
         }
 
         public async Task<ProdutoViewModel> FindByName(string name)
         {
-            ProdutoViewModel produto = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint + name))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    produto = await JsonSerializer.DeserializeAsync<ProdutoViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return produto;
+                return await CapituraRetorno<ProdutoViewModel>(response);
             }
         }
 
         public async Task<ProdutoViewModel> Create(ProdutoViewModel produtoViewModel)
         {
-            ProdutoViewModel produto = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.PostAsJsonAsync(apiEndpoint, produtoViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    produto = await JsonSerializer.DeserializeAsync<ProdutoViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return produto;
+                return await CapituraRetorno<ProdutoViewModel>(response);
             }
         }
 
         public async Task<ProdutoViewModel> Update(int id, ProdutoViewModel produtoViewModel)
         {
-            ProdutoViewModel produto = null;
-
-
             var client = _clientFactory.CreateClient("Api");
-
-            var json = JsonSerializer.Serialize(produtoViewModel, _options);
 
             using (var response = await client.PutAsJsonAsync(apiEndpoint + id, produtoViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    produto = await JsonSerializer.DeserializeAsync<ProdutoViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return produto;
+                return await CapituraRetorno<ProdutoViewModel>(response);
             }
         }
 
         public async Task<ProdutoViewModel> Delete(int id)
         {
-            ProdutoViewModel produto = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.DeleteAsync(apiEndpoint + id))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    produto = await JsonSerializer.DeserializeAsync<ProdutoViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return produto;
+                return await CapituraRetorno<ProdutoViewModel>(response);
             }
+        }
+
+        private async Task<T> CapituraRetorno<T>(HttpResponseMessage response)
+        {
+            T obj;
+
+            var apiResponse = await response.Content.ReadAsStreamAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                obj = await JsonSerializer.DeserializeAsync<T>(apiResponse, _options);
+            }
+            else
+            {
+                var erros = await JsonSerializer.DeserializeAsync<ErrorViewModel>(apiResponse, _options);
+
+                throw new Exception(erros.Message);
+            }
+            return obj;
         }
     }
 }

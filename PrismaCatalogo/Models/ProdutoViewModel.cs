@@ -10,6 +10,7 @@ namespace PrismaCatalogo.Web.Models
         public string? Observacao { get; set; }  
         public bool Ativo { get; set; }
         public FotoViewModel? FotoCapa { get; set; }
+        public double? Preco { get; set; }
         
         [Display(Name = "Categoria")]
         public int? CategoriaId { get; set; }

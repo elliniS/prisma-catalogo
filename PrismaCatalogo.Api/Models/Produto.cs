@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PrismaCatalogo.Api.Models
 {
@@ -16,5 +17,10 @@ namespace PrismaCatalogo.Api.Models
         public Categoria? Categoria { get; set; }
 
         public ICollection<ProdutoFilho>? ProdutosFilhos { get; set; }
+
+        [NotMapped]
+        public ProdutoFoto? Fotocapa { get; set; }
+        [NotMapped]
+        public double? Preco { get; set; }
     }
 }

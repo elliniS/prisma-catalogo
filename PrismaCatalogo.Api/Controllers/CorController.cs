@@ -36,7 +36,7 @@ namespace PrismaCatalogo.Api.Controllers
         }
 
         [HttpGet("{id}", Name = "ObterCor")]
-        public async Task<ActionResult<IEnumerable<CorResponseDTO>>> Get(int id)
+        public async Task<ActionResult<CorResponseDTO>> Get(int id)
         {
             var cor = await _unitOfWork.CorRepository.GetAsync(t => t.Id == id);
 

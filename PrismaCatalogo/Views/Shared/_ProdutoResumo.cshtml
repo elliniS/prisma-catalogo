@@ -20,7 +20,8 @@
                     <a asp-controller="Produto" asp-action="Index" 
                        asp-route-produtoId="@Model.Id">@Model.Nome</a>
                 </h4>
-                <h5>@(Model.ProdutosFilhos != null && Model.ProdutosFilhos.Where(p => p.Preco != null).Select(p => p.Preco).Order().FirstOrDefault() != null ? "Preço: R$" + Model.ProdutosFilhos.Select(p => p.Preco).Order().FirstOrDefault() : "")</h5>
+                @* <h5>@(Model.ProdutosFilhos != null && Model.ProdutosFilhos.Where(p => p.Preco != null).Select(p => p.Preco).Order().FirstOrDefault() != null ? "Preço: R$" + Model.ProdutosFilhos.Select(p => p.Preco).Order().FirstOrDefault() : "")</h5> *@
+                <h5>@(Model.Preco != null ? "Preço: R$ " + Model.Preco : "Preço: --")</h5>
                 <p>@Model.Descricao</p>
             </div>
         </div>

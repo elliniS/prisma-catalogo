@@ -28,15 +28,6 @@ namespace PrismaCatalogo.Web.Handlers
             var user = _httpContextAccessor.HttpContext?.User;
             var token = user?.FindFirst("Token")?.Value;
  
-            try
-            {
-                await base.SendAsync(request, cancellationToken);
-            }
-            catch
-            {
-
-            }
-
             if (!string.IsNullOrEmpty(token))
             {
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);

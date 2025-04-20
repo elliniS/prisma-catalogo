@@ -39,10 +39,12 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 ViewData["mensagemError"] = "Erro ao buscar produtoFilho!";
             }
 
-            foreach (var produto in produtosFilhos)
-            {
-                produto.FotoCapa = produto.Fotos.OrderBy(f => f.Id).LastOrDefault();
-            }
+            ViewData["mensagemError"] = TempData["mensagemError"];
+
+            //foreach (var produto in produtosFilhos)
+            //{
+            //    produto.FotoCapa = produto.Fotos.OrderBy(f => f.Id).LastOrDefault();
+            //}
 
             ViewBag.ProdutoId = produtoId;
 
@@ -84,6 +86,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
             produtoFilho.ProdutoId = produtoId;
 
             return View(produtoFilho);
+
         }
 
         // POST: Funcionario/FuncionarioProdutosFilhos/Create
@@ -93,7 +96,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ProdutoId,Nome,Preco,QuantEstoque,Descricao,Observacao,Ativo,TamanhoId,CorId")] ProdutoFilhoViewModel produtoFilho, IEnumerable<IFormFile>? files)
         {
-            ProdutoFilhoValidator validations = new ProdutoFilhoValidator(await _produtoFilhoService.FindByPruduto(produtoFilho.ProdutoId));
+            ProdutoFilhoValidator validations = new ProdutoFilhoValidator();
             var resul = validations.Validate(produtoFilho);
 
             if (resul.IsValid)
@@ -105,9 +108,9 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                     var result = await _produtoFilhoService.Create(produtoFilho);
                     return RedirectToAction(nameof(Index), new { produtoFilho.ProdutoId});
                 }
-                catch
+                catch(Exception e)
                 {
-                    ViewData["mensagemError"] = "Erro ao cadastrar!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
@@ -144,8 +147,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ProdutoId,Nome,Preco,QuantEstoque,Descricao,Observacao,Ativo,TamanhoId,CorId,Fotos")] ProdutoFilhoViewModel produtoFilhoViewModel, IEnumerable<IFormFile>? files)
         {
-            var produtosFilhos = (await _produtoFilhoService.FindByPruduto(produtoFilhoViewModel.ProdutoId)).Where(t => t.Id != id);
-            ProdutoFilhoValidator validations = new ProdutoFilhoValidator(produtosFilhos);
+            ProdutoFilhoValidator validations = new ProdutoFilhoValidator();
             var resul = validations.Validate(produtoFilhoViewModel);
 
             if (resul.IsValid)
@@ -160,9 +162,9 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                     var re = await _produtoFilhoService.Update(id, produtoFilhoViewModel);
                     return RedirectToAction(nameof(Index), new { produtoFilhoViewModel.ProdutoId });
                 }
-                catch
+                catch(Exception e)
                 {
-                    ViewData["mensagemError"] = "Erro ao atualizar!";
+                    ViewData["mensagemError"] = e.Message;
                 }
             }
 
@@ -207,7 +209,7 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
                 }
                 catch
                 {
-                    ViewData["mensagemError"] = "Erro ao deletar!";
+                    TempData["mensagemError"] = "Erro ao deletar!";
                 }
             }
 

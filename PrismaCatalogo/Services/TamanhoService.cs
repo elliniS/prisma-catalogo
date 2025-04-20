@@ -25,131 +25,83 @@ namespace PrismaCatalogo.Web.Services
 
         public async Task<IEnumerable<TamanhoViewModel>> GetAll()
         {
-            IEnumerable<TamanhoViewModel> tamanhos = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    tamanhos = await JsonSerializer.DeserializeAsync<IEnumerable<TamanhoViewModel>>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return tamanhos;
+                return await CapituraRetorno<IEnumerable<TamanhoViewModel>>(response);
             }
         }
 
         public async Task<TamanhoViewModel> FindById(int id)
         {
-            TamanhoViewModel tamanho = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using ( var response = await client.GetAsync(apiEndpoint + id))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    tamanho = await JsonSerializer.DeserializeAsync<TamanhoViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return tamanho;
+                return await CapituraRetorno<TamanhoViewModel>(response);
             }
         }
 
         public async Task<TamanhoViewModel> FindByName(string name)
         {
-            TamanhoViewModel tamanho = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.GetAsync(apiEndpoint + name))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    tamanho = await JsonSerializer.DeserializeAsync<TamanhoViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return tamanho;
+                return await CapituraRetorno<TamanhoViewModel>(response);
             }
         }
 
         public async Task<TamanhoViewModel> Create(TamanhoViewModel tamanhoViewModel)
         {
-            TamanhoViewModel tamanho = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.PostAsJsonAsync(apiEndpoint, tamanhoViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    tamanho = await JsonSerializer.DeserializeAsync<TamanhoViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return tamanho;
+                return await CapituraRetorno<TamanhoViewModel>(response);
             }
         }
 
         public async Task<TamanhoViewModel> Update(int id, TamanhoViewModel tamanhoViewModel)
         {
-            TamanhoViewModel tamanho = null;
-
-
             var client = _clientFactory.CreateClient("Api");
 
             var json = JsonSerializer.Serialize(tamanhoViewModel, _options);
 
             using (var response = await client.PutAsJsonAsync(apiEndpoint + id, tamanhoViewModel))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    tamanho = await JsonSerializer.DeserializeAsync<TamanhoViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return tamanho;
+                return await CapituraRetorno<TamanhoViewModel>(response);
             }
         }
 
         public async Task<TamanhoViewModel> Delete(int id)
         {
-            TamanhoViewModel tamanho = null;
-
             var client = _clientFactory.CreateClient("Api");
 
             using (var response = await client.DeleteAsync(apiEndpoint + id))
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    var apiResponse = await response.Content.ReadAsStreamAsync();
-                    tamanho = await JsonSerializer.DeserializeAsync<TamanhoViewModel>(apiResponse, _options);
-                }
-                else
-                {
-                    return null;
-                }
-                return tamanho;
+                return await CapituraRetorno<TamanhoViewModel>(response);
             }
+        }
+
+        private async Task<T> CapituraRetorno<T>(HttpResponseMessage response)
+        {
+            T obj;
+
+            var apiResponse = await response.Content.ReadAsStreamAsync();
+
+            if (response.IsSuccessStatusCode)
+            {
+                obj = await JsonSerializer.DeserializeAsync<T>(apiResponse, _options);
+            }
+            else
+            {
+                var erros = await JsonSerializer.DeserializeAsync<ErrorViewModel>(apiResponse, _options);
+
+                throw new Exception(erros.Message);
+            }
+            return obj;
         }
     }
 }
