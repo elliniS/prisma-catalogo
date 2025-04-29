@@ -79,6 +79,7 @@ public class AuthController : Controller
             [
                 new Claim(ClaimTypes.Name, usuario.NomeUsuario),
             new Claim(ClaimTypes.Role, usuario.UsuarioTipo.ToString()),
+            new Claim("Id", usuario.Id.ToString()),
             new Claim("Token", usuario.Token),
             new Claim("RefreshToken", usuario.RefreshToken)
             ];

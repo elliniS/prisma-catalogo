@@ -45,8 +45,13 @@
         </div>
     </form>
 
+    <div id="avaliacao-usuario" style="margin:15px 0"></div>
+
+    <div id="lista-avaliacoes"></div>
     <a asp-controller="Home" asp-action="Index">Voltar para os produtos</a>
 </div>
+
+
 
 <script>
     $(document).ready(function () { 
@@ -57,7 +62,29 @@
 
         $("#tamanhoSelect").change(function () {
             $("#formTrocaProduto").submit();
-        })
+        });
 
-    });    
+        $.ajax({
+            type: "GET",
+            url: '@Html.Raw(@Url.Action("ObterAvaliacoes", "Avaliacao", new { produtoId = Model.Id }))',
+            success: function (data) {
+                $("#lista-avaliacoes").html(data); // Atualiza a lista de avaliações
+            }
+        });
+
+
+        @if (User.FindFirst("Id") != null)
+        {
+            <text>
+                $.ajax({
+                    type: "GET",
+                        url: '@Html.Raw(@Url.Action("ObterAvaliacaoUsuario", "Avaliacao", new { produtoId = Model.Id, usuarioId = @User.FindFirst("Id")?.Value.Trim() }))',
+                    success: function (resultado) {
+                        $("#avaliacao-usuario").html(resultado);
+                    }
+                });
+            </text>
+        }
+ 
+    });
 </script>

@@ -17,11 +17,6 @@ namespace PrismaCatalogo.Api.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Foto>(f =>
-            //{
-            //    f.HasKey(t => t.Id);
-            //});
-
             modelBuilder.Entity<Tamanho>(e => {
                 e.HasKey(t => t.Id);
                 e.HasIndex(t => t.Nome).IsUnique(true);
@@ -111,6 +106,27 @@ namespace PrismaCatalogo.Api.Context
                 .WithOne()
                 .HasForeignKey<RefreshToken>(u => u.UsuarioId);
             });
+
+            modelBuilder.Entity<Avaliacao>(a =>
+            {
+                a.HasKey(t => t.Id);
+            });
+
+            modelBuilder.Entity<Avaliacao>(a =>
+            {
+                a.HasOne(r => r.Usuario)
+                .WithMany()
+                .HasForeignKey(u => u.UsuarioId);
+            });
+
+
+
+            modelBuilder.Entity<Avaliacao>(a =>
+            {
+                a.HasOne(r => r.Produto)
+                .WithMany()
+                .HasForeignKey(r => r.ProdutoId); 
+               });
         }
 
         public DbSet<Tamanho> Tamanhos { get; set; }
@@ -122,5 +138,6 @@ namespace PrismaCatalogo.Api.Context
         public DbSet<ProdutoFilhoFoto> produtoFilhoFotos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Avaliacao> Avaliacoes { get; set; }
     }
 }

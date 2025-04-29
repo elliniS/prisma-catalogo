@@ -27,27 +27,3 @@
         </div>
     </div>
 </div>
-
-@* 
-
-
-<div class="col-sm-4 col-md-4 col-lg-4">
-    <p>
-        @if (Model.FotoCapa != null)
-        {
-            <div class="product-view rounded" style="background-image: url('data:image/png;base64,@Html.DisplayFor(modelItem => Model.FotoCapa.FotoBytes)')"></div>
-        }
-        else
-        {
-            <div class="product-view rounded"><i class="bi bi-file-image-fill"></i></div>
-        }
-    </p>
-    <h3>Preço: @(Model.ProdutosFilhos != null ? Model.ProdutosFilhos.Select(p => p.Preco).Order().FirstOrDefault() : "")</h3>
-    
-    <h4>
-        <a asp-controller="Lanche" asp-action="Details"
-           asp-route-lancheId="@Model.Id">@Model.Nome</a>
-    </h4>
-    
-     <p>@Model.Descricao</p>
-</div> *@
