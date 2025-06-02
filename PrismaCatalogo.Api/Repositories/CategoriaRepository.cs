@@ -22,14 +22,15 @@ namespace PrismaCatalogo.Api.Repositories
             .ToListAsync();
         }
 
-        //public async  Task<Categoria?> GetAsync(Expression<Func<Categoria, bool>> predicate)
-        //{
-        //    return await _context.Set<Categoria>().AsNoTracking()
-        //    .Include(c => c.CategoriaPai)
-        //    .Include(c => c.CategoriasFilhas)
-        //    .Where(predicate)
-        //    .FirstOrDefaultAsync();
-        //}
+        public async Task<Categoria?> GetAsync(Expression<Func<Categoria, bool>> predicate)
+        {
+            return await _context.Set<Categoria>().AsNoTracking()
+            .Include(c => c.CategoriaPai)
+            .Include(c => c.CategoriasFilhas)
+            //.Include(c => c.Produtos)
+            .Where(predicate)
+            .FirstOrDefaultAsync();
+        }
 
         public async Task<IEnumerable<Categoria>> GetCategoriasMesmoNivel(int? idPai)
         {

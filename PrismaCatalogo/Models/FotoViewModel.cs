@@ -9,6 +9,7 @@ namespace PrismaCatalogo.Web.Models
 
         public bool FgPrincipal { get; set; }
         public string? FotoBytes { get; set; }
+        public string? Caminho { get; set; }
         public bool FgExcluir { get; set; }
 
         //[Display(Name = "Fotos")]

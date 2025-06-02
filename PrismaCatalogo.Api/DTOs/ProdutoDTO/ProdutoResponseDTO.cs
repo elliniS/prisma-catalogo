@@ -14,6 +14,7 @@ namespace PrismaCatalogo.Api.DTOs.ProdutoDTO
         public bool Ativo { get; set; }
         public ProdutoFotoResponseDTO FotoCapa { get; set; }
         public double? Preco { get; set; }
+        public double? AvaliacaoMedia { get; set; }
 
         public int CategoriaId { get; set; }
         public CategoriaResponseDTO Categoria { get; set; }

@@ -36,7 +36,8 @@
                     <div class="product-view rounded">
                         @if(item.FotoCapa != null)
                         {
-                            <img class="mx-auto d-block" src="data:image/png;base64,@Html.DisplayFor(modelItem => item.FotoCapa.FotoBytes)">
+                            @* <img class="mx-auto d-block" src="data:image/png;base64,@Html.DisplayFor(modelItem => item.FotoCapa.FotoBytes)"> *@
+                            <img class="mx-auto d-block" src="@item.FotoCapa.Caminho">
                         }
                         else
                         {

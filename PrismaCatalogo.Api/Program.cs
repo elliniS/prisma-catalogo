@@ -66,6 +66,8 @@ builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>(); 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IImagemService, ImagemService>();
+
 
 builder.Services.AddAutoMapper(typeof(TamanhoDTOMapping));
 builder.Services.AddAutoMapper(typeof(CorDTOMapping));

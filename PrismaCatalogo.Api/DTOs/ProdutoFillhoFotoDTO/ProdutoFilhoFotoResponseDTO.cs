@@ -7,5 +7,6 @@ namespace PrismaCatalogo.Api.DTOs.CorDTO
         public int Id { get; set; }
         public int ProdutoFilhoId { get; set; }
         public string? FotoBytes { get; set; }
+        public string? Caminho { get; set; }
     }
 }

@@ -36,6 +36,12 @@
                     <select class="form-select" id="tamanhoSelect" name="tamanhoId" asp-items="ViewBag.ProdutoTamanhos">
                         <option selected></option>
                     </select>
+
+                   @*  @foreach (var tamanho in ViewBag.ProdutoTamanhos)
+                    {
+                        <input class="produto-cores" type="radio"  name="tamanhoId" id="cor_@(tamanho.Id)" value="@(tamanho.Id)" autocomplete="off" @(tamanho.Id == Model.TamanhoId ? "checked" : "")>
+                        <label class="btn color-view rounded-circle">@tamanho.Nome</label>
+                    } *@
                 </div>
 
                 <div>

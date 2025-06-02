@@ -59,7 +59,8 @@
                             <input asp-for="@Model.Fotos[i].Id" type="hidden" />
 
                             <div class="card" style="width: 10rem; height: 13rem;">
-                                <img style="width: 10rem; height: 10rem;" src="data:image/png;base64,@Html.DisplayFor(modelItem => Model.Fotos[i].FotoBytes)" class="card-img-top" alt="...">
+                                @* <img style="width: 10rem; height: 10rem;" src="data:image/png;base64,@Html.DisplayFor(modelItem => Model.Fotos[i].FotoBytes)" class="card-img-top" alt="..."> *@
+                                <img style="width: 10rem; height: 10rem;" src="@Model.Fotos[i].Caminho" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <div class="form-check form-switch">
                                         <input asp-for="@Model.Fotos[i].FgExcluir" class="form-check-input" type="checkbox">

@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrismaCatalogo.Api", "PrismaCatalogo.Api\PrismaCatalogo.Api.csproj", "{8A4A5B1F-0A6A-4C8B-A2EB-FEFAC624597B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{04E100C3-6E63-4BEA-B61F-6F5D0B119742}"
+	ProjectSection(SolutionItems) = preProject
+		PrismaCatalogo.Api\DTOs\Mappings\AvaliacaoDTOMapping.cs = PrismaCatalogo.Api\DTOs\Mappings\AvaliacaoDTOMapping.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{EE7398A8-FEC1-456C-9751-CD3F512866C0}"
 EndProject

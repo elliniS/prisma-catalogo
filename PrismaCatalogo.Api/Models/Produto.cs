@@ -10,7 +10,7 @@ namespace PrismaCatalogo.Api.Models
         public string? Descricao { get; set; }
         public string? Observacao { get; set; }
         public bool Ativo { get; set; }
-        
+
         public ICollection<ProdutoFoto>? Fotos { get; set; }
 
         public int? CategoriaId { get; set; }
@@ -18,6 +18,11 @@ namespace PrismaCatalogo.Api.Models
 
         public ICollection<ProdutoFilho>? ProdutosFilhos { get; set; }
 
+        public ICollection<Avaliacao>? Avaliacoes { get; set; }
+
+
+        [NotMapped]
+        public double? AvaliacaoMedia { get; set;}
         [NotMapped]
         public ProdutoFoto? Fotocapa { get; set; }
         [NotMapped]

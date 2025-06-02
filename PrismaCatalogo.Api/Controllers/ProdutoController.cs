@@ -10,6 +10,7 @@ using PrismaCatalogo.Api.Filters;
 using PrismaCatalogo.Api.Models;
 using PrismaCatalogo.Api.Repositories;
 using PrismaCatalogo.Api.Repositories.Interfaces;
+using PrismaCatalogo.Api.Services.Interfaces;
 using PrismaCatalogo.Api.Validations;
 
 namespace PrismaCatalogo.Api.Controllers
@@ -21,11 +22,13 @@ namespace PrismaCatalogo.Api.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IImagemService _imageService;
 
-        public ProdutoController(IUnitOfWork unitOfWork, IMapper mapper)
+        public ProdutoController(IUnitOfWork unitOfWork, IMapper mapper, IImagemService imagemService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _imageService = imagemService;
         }
 
         [AllowAnonymous]
@@ -62,6 +65,40 @@ namespace PrismaCatalogo.Api.Controllers
             var produtoResponse = _mapper.Map<IEnumerable<ProdutoResponseDTO>>(produto);
             return Ok(produtoResponse);
         }
+
+        [AllowAnonymous]
+        [HttpGet("GetByCategoria/{categoriaId}", Name = "ObterPorCategoria")]
+        public async Task<ActionResult<IEnumerable<ProdutoResponseDTO>>> GetByCategoria(int categoriaId)
+        {
+
+            List<Produto> produtos = new List<Produto>();
+
+            var cat = await _unitOfWork.CategoriaRepository.GetAsync(c =>  c.Id == categoriaId);
+
+            var aa = await ObtemProdutosCategoriasFilhas(cat, produtos);
+
+
+             //var produto = await _unitOfWork.ProdutoRepository.GetListAsync(t => t.Categoria != null && t.Categoria.Id == categoriaId, p => new { p.Id, p.Nome, p.Descricao, p.Ativo, Fotocapa = p.Fotos.FirstOrDefault(), Preco = p.ProdutosFilhos.Min(pf => pf.Preco) });
+
+            var produtoResponse = _mapper.Map<IEnumerable<ProdutoResponseDTO>>(produtos);
+            return Ok(produtoResponse);
+        }
+
+        private async Task<List<Produto>> ObtemProdutosCategoriasFilhas(Categoria categoria, List<Produto> produtos)
+        {
+            produtos.AddRange(await _unitOfWork.ProdutoRepository.GetListAsync(t => t.Categoria != null && t.Categoria.Id == categoria.Id, p => new { p.Id, p.Nome, p.Descricao, p.Ativo, Fotocapa = p.Fotos.FirstOrDefault(), Preco = p.ProdutosFilhos.Min(pf => pf.Preco), AvaliacaoMedia =  p.Avaliacoes != null && p.Avaliacoes.Count() > 0 ? p.Avaliacoes.Average(a => a.Nota) : (double?)null }));
+
+
+            foreach(Categoria c in categoria.CategoriasFilhas)
+            {
+                var cat = await _unitOfWork.CategoriaRepository.GetAsync(i => i.Id == c.Id);
+
+                await ObtemProdutosCategoriasFilhas(cat, produtos);
+            }
+
+            return produtos;
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<ProdutoResponseDTO>> Post(ProdutoRequestDTO produtoRequest)
@@ -103,20 +140,29 @@ namespace PrismaCatalogo.Api.Controllers
             var produtoUp = _unitOfWork.ProdutoRepository.Update(produto);
             await _unitOfWork.CommitAsync();
 
+            // GerenciarFotos(produtoRequest.Fotos, produto.Id);
             foreach (var fotoRequest in produtoRequest.Fotos)
             {
 
                 if (fotoRequest.Id == null || fotoRequest.Id == 0)
                 {
                     var produtoFoto = _mapper.Map<ProdutoFoto>(fotoRequest);
+                    var uploadFoto = _imageService.Upload(produtoFoto.FotoBytes);
+
                     produtoFoto.ProdutoId = id;
+                    produtoFoto.Caminho = uploadFoto.Url.ToString();
+                    produtoFoto.Nome = uploadFoto.PublicId;
+                    produtoFoto.FotoBytes = null;
+
                     _unitOfWork.ProdutoFotoRepository.Create(produtoFoto);
                 }
                 else if (fotoRequest.FgExcluir)
                 {
-
-
                     var produtoFoto = await _unitOfWork.ProdutoFotoRepository.GetAsync(f => f.Id == fotoRequest.Id);
+                    if (produtoFoto.Nome != null)
+                    {
+                        _imageService.Delete(produtoFoto.Nome);
+                    }
                     _unitOfWork.ProdutoFotoRepository.Delete(produtoFoto);
                 }
             }
@@ -170,7 +216,13 @@ namespace PrismaCatalogo.Api.Controllers
                 if (fotoRequest.Id == null || fotoRequest.Id == 0)
                 {
                     var produtoFoto = _mapper.Map<ProdutoFoto>(fotoRequest);
+                    var uploadFoto = _imageService.Upload(produtoFoto.FotoBytes);
+
                     produtoFoto.ProdutoId = produtoId;
+                    produtoFoto.Caminho = uploadFoto.Url.ToString();
+                    produtoFoto.Nome = uploadFoto.PublicId;
+                    produtoFoto.FotoBytes = null;
+
                     _unitOfWork.ProdutoFotoRepository.Create(produtoFoto);
                 }
                 else if (fotoRequest.FgExcluir)
@@ -178,7 +230,12 @@ namespace PrismaCatalogo.Api.Controllers
 
 
                     var produtoFoto = (await _unitOfWork.ProdutoFotoRepository.GetAllAsync()).Where(f => f.Id == fotoRequest.Id).FirstOrDefault();
-                   _unitOfWork.ProdutoFotoRepository.Delete(produtoFoto);
+                    if (produtoFoto.Nome != null)
+                    {
+                        _imageService.Delete(produtoFoto.Nome);
+                    }
+                    
+                    _unitOfWork.ProdutoFotoRepository.Delete(produtoFoto);
                 }
             }
         }

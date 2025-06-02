@@ -124,7 +124,7 @@ namespace PrismaCatalogo.Api.Context
             modelBuilder.Entity<Avaliacao>(a =>
             {
                 a.HasOne(r => r.Produto)
-                .WithMany()
+                .WithMany(p => p.Avaliacoes)
                 .HasForeignKey(r => r.ProdutoId); 
                });
         }
