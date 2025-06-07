@@ -62,12 +62,18 @@ builder.Services.AddValidatorsFromAssemblyContaining<ProdutoFilhoValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UsuarioValidator>();
 
 
+
+
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>(); 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IImagemService, ImagemService>();
+builder.Services.AddScoped<IPostService, PostService>();
 
+builder.Services.AddHttpClient("n8n_media", c => c.BaseAddress = new Uri(
+    builder.Configuration["n8n:media"])
+);
 
 builder.Services.AddAutoMapper(typeof(TamanhoDTOMapping));
 builder.Services.AddAutoMapper(typeof(CorDTOMapping));

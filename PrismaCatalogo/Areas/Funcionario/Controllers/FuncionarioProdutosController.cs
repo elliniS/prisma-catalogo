@@ -9,6 +9,8 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing;
 using Microsoft.AspNetCore.Authorization;
+using PrismaCatalogo.Web.Services;
+using Microsoft.Extensions.Hosting;
 
 namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
 {
@@ -18,11 +20,13 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
     {
         private IProdutoService _produtoService;
         private ICategoriaService _categoriaService;
+        private IPostService _postService;
 
-        public FuncionarioProdutosController(IProdutoService produto, ICategoriaService categoria)
+        public FuncionarioProdutosController(IProdutoService produto, ICategoriaService categoria, IPostService postService)
         {
             _produtoService = produto;
             _categoriaService = categoria;
+            _postService = postService;
         }
 
 
@@ -159,6 +163,56 @@ namespace PrismaCatalogo.Web.Areas.Funcionario.Controllers
             resul.AddToModelState(ModelState);
 
             return View(produtoViewModel);
+        }
+
+        // GET: Funcionario/FuncionarioProdutosFilhos/Edit/5
+        public async Task<IActionResult> Post(int? id)
+        {
+            try
+            {
+
+
+                var produto = await _produtoService.FindById(Convert.ToInt32(id));
+
+                if (produto == null)
+                {
+                    throw new Exception();
+                }
+
+                if (produto.Fotos == null)
+                {
+                    ViewData["mensagemError"] = "Erro ao acessar tela de edição!";
+                    return RedirectToAction(nameof(Index));
+                }
+                PostViewModel post = new PostViewModel() { 
+                    Media = produto.Fotos.FirstOrDefault().Caminho,
+                    Caption = produto.Descricao
+                };
+                    
+
+                return View(post);
+            }
+            catch
+            {
+                ViewData["mensagemError"] = "Erro ao acessar tela de edição!";
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Post([Bind("Media, Caption")] PostViewModel postViewModel)
+        {
+            try
+            {
+                var aa = _postService.Create(postViewModel);
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Funcionario/FuncionarioProdutos/Delete/5

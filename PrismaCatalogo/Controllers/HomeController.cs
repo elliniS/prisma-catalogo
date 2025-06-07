@@ -19,8 +19,8 @@ namespace PrismaCatalogo.Web.Controllers
         }
 
         public async Task<IActionResult> Index()
-        { 
-            var produtos = (await _produtoService.GetAll()).Where(p => p.Ativo = true);
+        {
+            var produtos = new List<ProdutoViewModel>(); //(await _produtoService.GetAll()).Where(p => p.Ativo = true);
 
             return View(produtos);
         }
