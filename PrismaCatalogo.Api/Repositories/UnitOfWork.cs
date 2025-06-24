@@ -15,6 +15,7 @@ namespace PrismaCatalogo.Api.Repositories
         private IUsuarioRepository _usuarioRepository;
         private IRefreshTokenRepository _refreshTokenRepository;
         private IAvaliacaoRepository _avaliacaoRepository;
+        private ICodigoReenviaSenhaRepository _codigoReenviaSenhaRepository;
 
         public ApplicationDbContext _context;
         
@@ -106,6 +107,14 @@ namespace PrismaCatalogo.Api.Repositories
             get
             {
                 return _avaliacaoRepository = _avaliacaoRepository ?? new AvaliacaoRepository(_context);
+            }
+        }
+
+        public ICodigoReenviaSenhaRepository CodigoReenviaSenhaRepository
+        {
+            get
+            {
+                return _codigoReenviaSenhaRepository = _codigoReenviaSenhaRepository ?? new CodigoReenviaSenhaRepository(_context);
             }
         }
 

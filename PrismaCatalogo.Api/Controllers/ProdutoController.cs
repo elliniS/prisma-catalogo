@@ -60,7 +60,7 @@ namespace PrismaCatalogo.Api.Controllers
         [HttpGet("GetByName/{nome}", Name = "ObterPorNomeProduto")]
         public async Task<ActionResult<IEnumerable<ProdutoResponseDTO>>> GetByName(string nome)
         {
-            var produto = await _unitOfWork.ProdutoRepository.GetAsync(t => t.Nome == nome);
+            var produto = await _unitOfWork.ProdutoRepository.GetListAsync(t => t.Nome.ToLower().Contains(nome.ToLower()), p => new { p.Id, p.Nome, p.Descricao, p.Ativo, Fotocapa = p.Fotos.FirstOrDefault(), Preco = p.ProdutosFilhos.Min(pf => pf.Preco), AvaliacaoMedia = p.Avaliacoes != null && p.Avaliacoes.Count() > 0 ? p.Avaliacoes.Average(a => a.Nota) : (double?)null });
 
             var produtoResponse = _mapper.Map<IEnumerable<ProdutoResponseDTO>>(produto);
             return Ok(produtoResponse);
@@ -86,8 +86,7 @@ namespace PrismaCatalogo.Api.Controllers
 
         private async Task<List<Produto>> ObtemProdutosCategoriasFilhas(Categoria categoria, List<Produto> produtos)
         {
-            produtos.AddRange(await _unitOfWork.ProdutoRepository.GetListAsync(t => t.Categoria != null && t.Categoria.Id == categoria.Id, p => new { p.Id, p.Nome, p.Descricao, p.Ativo, Fotocapa = p.Fotos.FirstOrDefault(), Preco = p.ProdutosFilhos.Min(pf => pf.Preco), AvaliacaoMedia =  p.Avaliacoes != null && p.Avaliacoes.Count() > 0 ? p.Avaliacoes.Average(a => a.Nota) : (double?)null }));
-
+            produtos.AddRange(await _unitOfWork.ProdutoRepository.GetListAsync(p => p.Categoria != null && p.Categoria.Id == categoria.Id, p => new { p.Id, p.Nome, p.Descricao, p.Ativo, Fotocapa = p.Fotos.FirstOrDefault(), Preco = p.ProdutosFilhos.Min(pf => pf.Preco), AvaliacaoMedia =  p.Avaliacoes != null && p.Avaliacoes.Count() > 0 ? p.Avaliacoes.Average(a => a.Nota) : (double?)null }));
 
             foreach(Categoria c in categoria.CategoriasFilhas)
             {

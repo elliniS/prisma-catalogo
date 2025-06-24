@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper;
 using PrismaCatalogo.Api.DTOs.CorDTO;
 using PrismaCatalogo.Api.Models;
 

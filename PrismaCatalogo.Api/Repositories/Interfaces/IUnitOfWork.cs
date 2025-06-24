@@ -12,6 +12,7 @@
         IUsuarioRepository UsuarioRepository { get; }
         IRefreshTokenRepository RefreshTokenRepository { get; }
         IAvaliacaoRepository AvaliacaoRepository { get; }
+        ICodigoReenviaSenhaRepository CodigoReenviaSenhaRepository { get; }
         Task CommitAsync();
     }
 }

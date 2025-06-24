@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NpgsqlTypes;
+using PrismaCatalogo.Api.DTOs.CodigoReenviaSenhaDTO;
 using PrismaCatalogo.Api.DTOs.UsuarioDTO;
 using PrismaCatalogo.Api.Enuns;
 using PrismaCatalogo.Api.Exceptions;
@@ -11,6 +12,7 @@ using PrismaCatalogo.Api.Filters;
 using PrismaCatalogo.Api.Models;
 using PrismaCatalogo.Api.Repositories;
 using PrismaCatalogo.Api.Repositories.Interfaces;
+using PrismaCatalogo.Api.Services;
 using PrismaCatalogo.Api.Services.Interfaces;
 using PrismaCatalogo.Api.Validations;
 
@@ -24,12 +26,14 @@ namespace PrismaCatalogo.Api.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
+        private readonly IEmailService _emailService;
 
-        public UsuarioController(IUnitOfWork unitOfWork, IMapper mapper, ITokenService tokenService)
+        public UsuarioController(IUnitOfWork unitOfWork, IMapper mapper, ITokenService tokenService, IEmailService emailService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _tokenService = tokenService;
+            _emailService = emailService;
         }
 
         [HttpGet]
@@ -164,6 +168,97 @@ namespace PrismaCatalogo.Api.Controllers
 
             return usuarioResponse;
 
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("EnviaCodigoRedefiniSenha")]
+        public async Task<CodigoReenviaSenhaResponseDTO> EnviaCodigoRedefiniSenha(UsuarioLoginRequestDTO usuarioRequestDTO)
+        {
+            var usua = await _unitOfWork.UsuarioRepository.GetAsync(u => u.NomeUsuario.Equals(usuarioRequestDTO.NomeUsuario));
+
+            if (usua == null)
+            {
+                throw new APIException("Usuario não encantrado", StatusCodes.Status403Forbidden);
+            }
+            
+            string codigoNumero = new Random().Next(100000, 999999).ToString();
+
+            var codigo = new CodigoReenviaSenha() { 
+                Codigo = codigoNumero,
+                UsuarioId = usua.Id,
+                DtCriado = DateTime.UtcNow
+            };
+
+            Email email = new Email()
+            {
+                Assunto = "Código para redefinir senha",
+                Corpo = $"Seu código é: {codigo.Codigo}",
+                Destinatario = usua.Email
+            };
+
+            var retorno =  await _emailService.SendEmail(email);
+            _unitOfWork.CodigoReenviaSenhaRepository.Create(codigo);
+             await _unitOfWork.CommitAsync();
+
+            var codigoDTO = _mapper.Map<CodigoReenviaSenhaResponseDTO>(codigo);
+
+            return codigoDTO; 
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("VerificaCodigo")]
+        public async Task<CodigoReenviaSenhaResponseDTO> VerificaCodigo(CodigoReenviaSenhaRequestDTO codigoReenviaSenhaRequest)
+        {
+            var codi = await _unitOfWork.CodigoReenviaSenhaRepository.GetAsync(c => c.UsuarioId == codigoReenviaSenhaRequest.UsuarioId && c.Codigo == codigoReenviaSenhaRequest.Codigo);
+
+            VerificaCodigo(codi);
+
+            var codigoDTO = _mapper.Map<CodigoReenviaSenhaResponseDTO>(codi);
+
+            return codigoDTO;
+
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("AlteraSenha")]
+        public async Task<CodigoReenviaSenhaResponseDTO> AlteraSenha(CodigoReenviaSenhaRequestDTO codigoReenviaSenhaRequest)
+        {
+            var codi = await _unitOfWork.CodigoReenviaSenhaRepository.GetAsync(c => c.UsuarioId == codigoReenviaSenhaRequest.UsuarioId && c.Codigo == codigoReenviaSenhaRequest.Codigo);
+
+            VerificaCodigo(codi);
+
+            var usu = await _unitOfWork.UsuarioRepository.GetAsync(u => u.Id == codigoReenviaSenhaRequest.UsuarioId);
+
+            codi.usado = true;
+            usu.Senha = codigoReenviaSenhaRequest.Senha;
+
+            _unitOfWork.UsuarioRepository.Update(usu);
+            _unitOfWork.CodigoReenviaSenhaRepository.Update(codi);
+            await _unitOfWork.CommitAsync();
+
+            var codigoDTO = _mapper.Map<CodigoReenviaSenhaResponseDTO>(codi);
+
+            return codigoDTO;
+
+        }
+
+        private void VerificaCodigo(CodigoReenviaSenha codigo)
+        {
+            if (codigo == null)
+            {
+                throw new APIException("Codigo incorreto", StatusCodes.Status403Forbidden);
+            }
+            else if (codigo.DtCriado < DateTime.Now.AddMinutes(-10))
+            {
+                throw new APIException("Codigo expirado", StatusCodes.Status403Forbidden);
+            }
+            else if (codigo.usado)
+            {
+                throw new APIException("Codigo Já usado", StatusCodes.Status403Forbidden);
+            }
         }
 
         private void validaStruturaDados(IEnumerable<Usuario> usuarios, Usuario usuario)

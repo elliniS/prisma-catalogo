@@ -126,7 +126,12 @@ namespace PrismaCatalogo.Api.Context
                 a.HasOne(r => r.Produto)
                 .WithMany(p => p.Avaliacoes)
                 .HasForeignKey(r => r.ProdutoId); 
-               });
+            });
+
+            modelBuilder.Entity<CodigoReenviaSenha>(c =>
+            {
+                c.HasKey(i => i.Id);
+            });
         }
 
         public DbSet<Tamanho> Tamanhos { get; set; }
@@ -139,5 +144,6 @@ namespace PrismaCatalogo.Api.Context
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Avaliacao> Avaliacoes { get; set; }
+        public DbSet<CodigoReenviaSenha> CodigoReenviaSenhas { set; get; }
     }
 }

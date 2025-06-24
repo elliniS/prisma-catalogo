@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using FluentValidation;
 using PrismaCatalogo.Api.Extensions;
 using PrismaCatalogo.Api.Models;
 
