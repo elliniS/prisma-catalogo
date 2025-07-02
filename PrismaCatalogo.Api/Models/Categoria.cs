@@ -13,6 +13,8 @@ namespace PrismaCatalogo.Api.Models
         //[Display(Name = "Categoria pai")]
         public Categoria? CategoriaPai { get; set; }
 
+        public bool FgTelaInicial { get; set; }
+
         //[Display(Name = "Categorias filhas")]
         public ICollection<Categoria>? CategoriasFilhas { get; set; }
 

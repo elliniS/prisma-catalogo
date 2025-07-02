@@ -33,7 +33,7 @@ namespace PrismaCatalogo.Api.Controllers
         //[Authorize(Roles = "Funcionario,Cliente")]
         public async Task<ActionResult<IEnumerable<CategoriaResponseDTO>>> Get()
         {
-            var categorias = await _unitOfWork.CategoriaRepository.GetAllAsync(c => new { c.Id, c.IdPai, c.Nome }); 
+            var categorias = await _unitOfWork.CategoriaRepository.GetAllAsync(c => new { c.Id, c.IdPai, c.Nome, c.FgTelaInicial }); 
 
 
             categorias.Select(c => c.Id);

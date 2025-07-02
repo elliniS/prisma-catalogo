@@ -7,5 +7,6 @@ namespace PrismaCatalogo.Api.DTOs.CategoriaDTO
     {
         public int? IdPai { get; set; }
         public string Nome { get; set; }
+        public bool FgTelaInicial { get; set; }
     }
 }

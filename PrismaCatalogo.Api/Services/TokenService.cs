@@ -27,6 +27,7 @@ namespace PrismaCatalogo.Api.Services
         {
             var claims = new List<Claim>
             {
+                 new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
                  new Claim(ClaimTypes.Name, usuario.NomeUsuario),
                  new Claim(ClaimTypes.Role, usuario.UsuarioTipo.ToString())
             };

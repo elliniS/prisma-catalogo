@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using NpgsqlTypes;
 using PrismaCatalogo.Api.DTOs.CodigoReenviaSenhaDTO;
 using PrismaCatalogo.Api.DTOs.UsuarioDTO;
@@ -15,6 +16,7 @@ using PrismaCatalogo.Api.Repositories.Interfaces;
 using PrismaCatalogo.Api.Services;
 using PrismaCatalogo.Api.Services.Interfaces;
 using PrismaCatalogo.Api.Validations;
+using System.Security.Claims;
 
 namespace PrismaCatalogo.Api.Controllers
 {
@@ -106,6 +108,42 @@ namespace PrismaCatalogo.Api.Controllers
             return Ok(usuarioResponse);
         }
 
+        [HttpPut("PutMySelf/{id:int}")]
+        public async Task<ActionResult<UsuarioResponseDTO>> PutMySelf(int id, UsuarioRequestDTO usuarioRequest)
+        {
+
+            var usuario = _mapper.Map<Usuario>(usuarioRequest);
+
+            if (User.FindFirst(ClaimTypes.NameIdentifier)?.Value != id.ToString())
+            {
+                throw new APIException("Não é permitido um cliente alterar outro usuario", StatusCodes.Status401Unauthorized);
+            }
+
+            var u = await _unitOfWork.UsuarioRepository.GetAsync(u => u.NomeUsuario == usuario.NomeUsuario && u.Senha == usuario.Senha);
+
+
+            if (u == null)
+            {
+                throw new APIException("Usuario não encontrado", StatusCodes.Status404NotFound);
+            }
+            else if (!u.Senha.Equals(usuario.Senha))
+            {
+                throw new APIException("Senha do usuário está incorreta", StatusCodes.Status401Unauthorized);
+            }
+
+            var usuarios = (await _unitOfWork.UsuarioRepository.GetAllAsync()).Where(t => t.Id != id);
+            validaStruturaDados(usuarios, usuario);
+
+            usuario.Id = id;
+            var usuarioUp = _unitOfWork.UsuarioRepository.Update(usuario);
+            await _unitOfWork.CommitAsync();
+
+            var usuarioResponse = _mapper.Map<UsuarioResponseDTO>(usuarioUp);
+
+
+            return Ok(usuarioResponse);
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<UsuarioResponseDTO>> Delete(int id)
         {
@@ -125,6 +163,77 @@ namespace PrismaCatalogo.Api.Controllers
         [HttpPost]
         [Route("Login")]
         public async Task<UsuarioTokenResponseDTO> Login(UsuarioLoginRequestDTO usuarioRequest)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         {
             var usuario = await _unitOfWork.UsuarioRepository.GetAsync(u => u.NomeUsuario == usuarioRequest.NomeUsuario && u.Senha == usuarioRequest.Senha);
 
