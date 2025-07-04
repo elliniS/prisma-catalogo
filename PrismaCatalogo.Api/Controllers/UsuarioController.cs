@@ -43,7 +43,7 @@ namespace PrismaCatalogo.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UsuarioResponseDTO>>> Get()
         {
-            var usuarios = await _unitOfWork.UsuarioRepository.GetAllAsync(u => new { u.Nome, u.NomeUsuario, u.UsuarioTipo, u.Email });
+            var usuarios = await _unitOfWork.UsuarioRepository.GetAllAsync(u => new {u.Id, u.Nome, u.NomeUsuario, u.UsuarioTipo, u.Email });
             
             if (usuarios == null)
             {
