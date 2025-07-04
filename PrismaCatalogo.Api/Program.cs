@@ -72,6 +72,8 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IImagemService, ImagemService>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IHashService, HashService>();
+builder.Services.AddScoped<IAesCryptoService, AesCryptoService>();
 
 builder.Services.AddHttpClient("n8n_media", c => c.BaseAddress = new Uri(
     builder.Configuration["n8n:media"])

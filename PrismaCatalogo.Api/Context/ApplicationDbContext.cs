@@ -1,11 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using dotenv.net;
 using PrismaCatalogo.Api.Models;
+using PrismaCatalogo.Api.Services.Interfaces;
 
 namespace PrismaCatalogo.Api.Context
 {
     public class ApplicationDbContext : DbContext
     {
+        IHashService _hashService;
+        IAesCryptoService _aesCryptoService;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHashService hashService, IAesCryptoService aesCryptoService) : base(options)
+        {
+            _hashService = hashService;
+            _aesCryptoService = aesCryptoService;
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -92,8 +102,26 @@ namespace PrismaCatalogo.Api.Context
                 u.HasKey(t => t.Id);
                 u.HasIndex(t => t.NomeUsuario).IsUnique(true);
                 u.Property(t => t.Nome).IsRequired(true);
-                u.Property(t => t.Senha).IsRequired(true);
+                u.Property(t => t.Senha).IsRequired(true);             
             });
+
+            modelBuilder.Entity<Usuario>()
+            .Property(u => u.Senha)
+            .HasConversion(
+                s => _hashService.GeraHash(s),
+                s => s
+            );
+
+            DotEnv.Load();
+            var chaveEmail = Environment.GetEnvironmentVariable("KEY_EMAIL");
+            byte[] chaveEmailByte = _aesCryptoService.HexStringToBytes(chaveEmail);
+
+            modelBuilder.Entity<Usuario>()
+            .Property(u => u.Email)
+            .HasConversion(
+                e => _aesCryptoService.Encrypt(e, chaveEmailByte),
+                e => _aesCryptoService.Decrypt(e, chaveEmailByte)
+            );
 
             modelBuilder.Entity<RefreshToken>(r =>
             {

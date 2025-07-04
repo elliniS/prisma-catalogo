@@ -29,19 +29,21 @@ namespace PrismaCatalogo.Api.Controllers
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
         private readonly IEmailService _emailService;
+        private readonly IHashService _hashService;
 
-        public UsuarioController(IUnitOfWork unitOfWork, IMapper mapper, ITokenService tokenService, IEmailService emailService)
+        public UsuarioController(IUnitOfWork unitOfWork, IMapper mapper, ITokenService tokenService, IEmailService emailService, IHashService hashService)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _tokenService = tokenService;
             _emailService = emailService;
+            _hashService = hashService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UsuarioResponseDTO>>> Get()
         {
-            var usuarios = await _unitOfWork.UsuarioRepository.GetAllAsync();
+            var usuarios = await _unitOfWork.UsuarioRepository.GetAllAsync(u => new { u.Nome, u.NomeUsuario, u.UsuarioTipo, u.Email });
             
             if (usuarios == null)
             {
@@ -78,7 +80,7 @@ namespace PrismaCatalogo.Api.Controllers
 
             validaStruturaDados((await _unitOfWork.UsuarioRepository.GetAllAsync()), usuario);
 
-
+           
             var novoUsuario = _unitOfWork.UsuarioRepository.Create(usuario);
             await _unitOfWork.CommitAsync();
 
@@ -163,81 +165,10 @@ namespace PrismaCatalogo.Api.Controllers
         [HttpPost]
         [Route("Login")]
         public async Task<UsuarioTokenResponseDTO> Login(UsuarioLoginRequestDTO usuarioRequest)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         {
-            var usuario = await _unitOfWork.UsuarioRepository.GetAsync(u => u.NomeUsuario == usuarioRequest.NomeUsuario && u.Senha == usuarioRequest.Senha);
-
-            if (usuario == null)
+            var usuario = await _unitOfWork.UsuarioRepository.GetAsync(u => u.NomeUsuario == usuarioRequest.NomeUsuario);
+     
+            if (usuario == null || ! (_hashService.ConparaValor(usuarioRequest.Senha, usuario.Senha)))
                 throw new APIException("Usuario ou senha invalido!", StatusCodes.Status404NotFound);
 
             var nRefheshToken = _tokenService.GenereteRefreshToken();

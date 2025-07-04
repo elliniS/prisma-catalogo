@@ -16,7 +16,7 @@ namespace PrismaCatalogo.Api.Filters
         }
 
         public void OnException(ExceptionContext context)
-        {
+        {  
             _logger.LogError(context.Exception, context.Exception.Message);
 
 
